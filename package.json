@@ -1,0 +1,46 @@
+{
+  "name": "tg-brat-bot",
+  "version": "1.0.0",
+  "description": "Brat Sticker Generator for Telegram",
+  "keywords": [
+    "Telegram",
+    "Brat",
+    "Sticker",
+    "Bot"
+  ],
+  "homepage": "https://github.com/mamiiblt/tg-brat-bot#readme",
+  "bugs": {
+    "url": "https://github.com/mamiiblt/tg-brat-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamiiblt/tg-brat-bot.git"
+  },
+  "license": "ISC",
+  "author": "mamiiblt",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "canvas": "^3.2.3",
+    "dotenv": "^17.4.2",
+    "fs-extra": "^11.3.4",
+    "node-telegram-bot-api": "^0.67.0",
+    "pretty-ms": "^9.3.0",
+    "puppeteer": "^24.42.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^25.6.0",
+    "@types/node-telegram-bot-api": "^0.64.14",
+    "@types/pretty-ms": "^4.0.0"
+  }
+}

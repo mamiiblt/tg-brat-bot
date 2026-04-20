@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <style>
+        @font-face {
+            font-family: "GeistLocal";
+            src: url("data:font/ttf;base64,__BASE64_HERE__") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+            font-display: block;
+        }
+
+        html, body {
+            width: 1000px;
+            height: 1000px;
+            margin: 0;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        #bratBox {
+            width: 1000px;
+            height: 1000px;
+            background: #7AD000;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        #display {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "GeistLocal", serif;
+            font-weight: 700;
+            font-size: 185px;
+            line-height: 1;
+            text-align: center;
+            white-space: pre-wrap;
+            color: #000000;
+            filter: blur(5px);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+<div id="bratBox">
+    <div id="display">__TEXT__</div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const displayDiv = document.getElementById('display');
+        let fontSize = 185;
+        const minFontSize = 10;
+
+        function isOverflowing() {
+            return displayDiv.scrollHeight > displayDiv.clientHeight ||
+                displayDiv.scrollWidth > displayDiv.clientWidth;
+        }
+
+        while (isOverflowing() && fontSize > minFontSize) {
+            fontSize -= 2;
+            displayDiv.style.fontSize = fontSize + 'px';
+        }
+    });
+</script>
+</body>
+</html>
