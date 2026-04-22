@@ -11,10 +11,12 @@ RUN apk add --no-cache \
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /usr/src/app
+
 COPY package*.json ./
 RUN npm install
-RUN npm run build
+
 COPY . .
+RUN npm run build
 
 ENV NODE_ENV=production
 
