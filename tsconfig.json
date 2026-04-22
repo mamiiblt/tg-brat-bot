@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "rootDir": ".",
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {

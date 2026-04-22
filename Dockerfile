@@ -13,8 +13,9 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
+RUN npm run build
 COPY . .
 
 ENV NODE_ENV=production
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
