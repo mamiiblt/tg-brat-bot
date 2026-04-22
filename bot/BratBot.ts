@@ -2,7 +2,7 @@ import {Command} from "@/types/Command";
 import {loadCommands} from "@/utils/CommandHandler";
 import TelegramBot, {CallbackQuery, Message} from "node-telegram-bot-api";
 import {getMainCommand, sendMessage} from "@/utils/BotUtils";
-import {getCategoryNames, sendHelpMessage} from "@/commands/Help";
+import {sendHelpMessage} from "@/commands/Help";
 import {getTranslator, getUserLanguage} from "@/utils/i18n";
 import {changeUserLanguage} from "@/commands/Language";
 

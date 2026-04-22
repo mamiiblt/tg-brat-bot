@@ -1,8 +1,8 @@
 import {Command, Translator} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
 import {CallbackQuery, InlineKeyboardButton} from "node-telegram-bot-api";
-import {languages} from "@/utils/i18n";
 import RDatabase from "@/utils/RDatabase";
+import languages from "@/utils/languages";
 
 const langButtons: InlineKeyboardButton[][] = [];
 languages.forEach((language, index) => {

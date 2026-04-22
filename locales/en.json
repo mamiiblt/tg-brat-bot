@@ -12,7 +12,7 @@
       "supportGroup": "Join Support Group"
     },
     "brat": {
-      "useBratAsReply": "Use /br as a <b>reply to the message</b> you want to quote."
+      "useBratAsReply": "Use /b as a <b>reply to the message</b> you want to quote."
     },
     "status": {
       "title": "Bot Container Status",
@@ -31,7 +31,7 @@
       },
       "sectionLng": {
         "pleaseSelect": "<b>Please select the category for which you need information / help.</b>",
-        "firstMsg": "If you reply to a message with the /br command, the bot will turn it into a brat sticker. If you want to customize the sticker, you can include the following parameters with the command:",
+        "firstMsg": "If you reply to a message with the /b command, the bot will turn it into a brat sticker. If you want to customize the sticker, you can include the following parameters with the command:",
         "commands": {
           "rbe": "<b>rbe:</b> Removes the slight blur effect from the image.",
           "png": "<b>png:</b> Sends it as a PNG instead of a sticker.",

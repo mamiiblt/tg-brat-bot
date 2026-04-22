@@ -35,8 +35,8 @@ export async function sendHelpMessage(chatId: number, categoryId: number, messag
             `${TRS.get("cmds.help.sectionLng.firstMsg")}\n`,
             lines.join("\n") + "\n",
             TRS.get("cmds.help.sectionLng.cmdExample"),
-            "/br raw wh fs-60",
-            "/br rbe raw bl"
+            "/b raw wh fs-60",
+            "/b rbe raw bl"
         ],
         [
             TRS.get("cmds.help.lang")

@@ -12,7 +12,7 @@
       "supportGroup": "Destek Grubuna Katıl"
     },
     "brat": {
-      "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /br komutu ile yanıtlayın."
+      "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /b komutu ile yanıtlayın."
     },
     "status": {
       "title": "Bot Konteyner Durumu",
@@ -31,7 +31,7 @@
       },
       "sectionLng": {
         "pleaseSelect": "<b>Lütfen yardım / bilgi almak istediğiniz kategoriyi aşağıdan seçiniz.</b>",
-        "firstMsg": "Bir mesajı brata çevirmek isterseniz o mesajı /br komutu ile yanıtlamanız yeterlidir. Eğer oluşturulacak bratı özelleştirmek isterseniz aşağıdaki argümanları komuta ekleyebilirsiniz:",
+        "firstMsg": "Bir mesajı brata çevirmek isterseniz o mesajı /b komutu ile yanıtlamanız yeterlidir. Eğer oluşturulacak bratı özelleştirmek isterseniz aşağıdaki argümanları komuta ekleyebilirsiniz:",
         "commands": {
           "rbe": "<b>rbe:</b> brat'ın hafif bulanıklık efektini kaldırır.",
           "png": "<b>png:</b> Sticker yerine PNG olarak gönderir.",

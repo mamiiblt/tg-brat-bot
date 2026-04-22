@@ -1,13 +1,8 @@
 import i18next from "i18next";
 import fsBackend from "i18next-fs-backend";
 import {Message} from "node-telegram-bot-api";
-import {getBot} from "@/bot/BratBot";
 import RDatabase from "@/utils/RDatabase";
-
-export const languages = [
-    { code: "en", flag: "🇺🇸", display: "English" },
-    { code: "tr", flag: "🇹🇷", display: "Türkçe" },
-]
+import languages from "@/utils/languages";
 
 const langCodes = languages.map(lang => lang.code)
 

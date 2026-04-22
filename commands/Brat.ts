@@ -3,7 +3,6 @@ import {getBot} from "@/bot/BratBot";
 import * as fs from "node:fs";
 import {getBrowser} from "@/bot/Browser";
 import path from "node:path";
-import {pathToFileURL} from "node:url";
 import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
 
 const themeMap = {
@@ -27,11 +26,11 @@ interface BratConfig {
 }
 
 export default {
-    name: "br",
+    name: "b",
     description: "Create brat images.",
     async execute(msg, trs, args) {
         const chat_id = msg.chat.id
-        const commandArgs = msg.text?.replace("/br ", "").split(" ") as string[]
+        const commandArgs = msg.text?.replace("/b ", "").split(" ") as string[]
         const replied = msg.reply_to_message
 
         if (!replied) {
