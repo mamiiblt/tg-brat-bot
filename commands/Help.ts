@@ -1,44 +1,51 @@
-import {Command} from "@/types/Command";
+import {Command, Translator} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
 import {InlineKeyboardMarkup} from "node-telegram-bot-api";
 
+let TRS: Translator
+
 export default {
-    name: "brat_help",
+    name: "helpb",
     description: "Shows help command of bot",
-    async execute(msg, args) {
+    async execute(msg, trs, args) {
+        TRS = trs
         await sendHelpMessage(msg.chat.id, 0)
     }
 
 } satisfies Command;
 
-export const categoryNames = [
-    "Default",
-    "Bot Usage",
-    "About Bot"
-]
+export function getCategoryNames(trs: Translator) {
+    return [
+        trs.get("cmds.help.categories.default"),
+        trs.get("cmds.help.categories.usage"),
+        trs.get("cmds.help.categories.language"),
+        trs.get("cmds.help.categories.about")
+    ]
+}
 
 export async function sendHelpMessage(chatId: number, categoryId: number, messageId?: number) {
-    const categoryContents = [
-        ["Please select a category."],
-        [
-            "If you reply to a message with the /brat_help command, the bot will turn it into a brat sticker. If you want to customize the sticker, you can include the following parameters with the command:\n",
-            "• <b>rbe:</b> Removes the slight blur effect from the image.",
-            "• <b>raw:</b> Sends it as a PNG instead of a sticker.",
-            "• <b>scr:</b> Adds a scribble effect to the top",
-            "• <b>t[color]:</b> Changes the background to green (gr is green, wh is white, bl is blue)",
-            "• <b>fs-[number]:</b> Changes the font size. (default: 185)\n",
-            "<b>Command Example</b>",
-            "/brat raw twh fs-60",
-            "/brat rbe raw tbl"
+    const keys = ["rbe", "png", "scr", "color", "fs"]
+    const lines: string[] = []
+    keys.forEach((key) => lines.push(`• ${TRS.get(`cmds.help.sectionLng.commands.${key}`)}`))
 
+    const categoryNames = getCategoryNames(TRS)
+    const categoryContents = [
+        [TRS.get("cmds.help.sectionLng.pleaseSelect")],
+        [
+            `${TRS.get("cmds.help.sectionLng.firstMsg")}\n`,
+            lines.join("\n") + "\n",
+            TRS.get("cmds.help.sectionLng.cmdExample"),
+            "/br raw wh fs-60",
+            "/br rbe raw bl"
         ],
         [
-            `If you'd like to view the source code, you can access it from <a href="https://github.com/mamiiblt/tg-brat-bot">this repository</a> <i>(don’t forget to give a ⭐)</i>\n`,
-            `Developed by <a href="https://t.me/mamiiblt"><b>mamiiblt</b></a> for fun`
+            TRS.get("cmds.help.lang")
+        ],
+        [
+            `${TRS.get("cmds.help.about.text1")}\n`,
+            TRS.get("cmds.help.about.text2")
         ]
     ]
-
-
 
     const buttons: InlineKeyboardMarkup = {
         inline_keyboard: []
@@ -51,20 +58,17 @@ export async function sendHelpMessage(chatId: number, categoryId: number, messag
         }])
     }
 
-    const msgContent = [
-        categoryId !== 0 ? `<b>${categoryNames[categoryId]}</b>\n` : null,
-        ...categoryContents[categoryId]
-    ].join("\n")
+    buttons.inline_keyboard.push([{ text: TRS.get("cmds.start.supportGroup"), url: "https://t.me/brat_support_group" }])
 
     if (messageId == undefined) {
         await getBot().sendMessage(chatId, [
-            msgContent,
+            categoryContents[categoryId].join("\n"),
         ].join("\n"), {
             parse_mode: "HTML",
             reply_markup: buttons
         })
     } else {
-        await getBot().editMessageText(msgContent, {
+        await getBot().editMessageText(categoryContents[categoryId].join("\n"), {
             chat_id: chatId,
             message_id: messageId,
             parse_mode: "HTML",

@@ -20,14 +20,17 @@
   "author": "mamiiblt",
   "main": "dist/main.js",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register main.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register main.ts --mode=debug",
     "build": "tsc",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js --mode=prod"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
     "fs-extra": "^11.3.4",
+    "i18next": "^26.0.6",
+    "i18next-fs-backend": "^2.6.4",
     "node-telegram-bot-api": "^0.67.0",
+    "pg": "^8.20.0",
     "pretty-ms": "^9.3.0",
     "puppeteer": "^24.42.0",
     "ts-node": "^10.9.2",
@@ -38,8 +41,11 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/fs-extra": "^11.0.4",
+    "@types/i18next": "^12.1.0",
+    "@types/i18next-fs-backend": "^1.1.5",
     "@types/node": "^25.6.0",
     "@types/node-telegram-bot-api": "^0.64.14",
+    "@types/pg": "^8.20.0",
     "@types/pretty-ms": "^4.0.0"
   }
 }

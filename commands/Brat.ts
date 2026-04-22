@@ -4,16 +4,18 @@ import * as fs from "node:fs";
 import {getBrowser} from "@/bot/Browser";
 import path from "node:path";
 import {pathToFileURL} from "node:url";
+import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
 
 const themeMap = {
-    tgr: {bg: '#7AD000', tx: '#000000'}, // green
-    twh: {bg: "#FFFFFF", tx: "#070707"}, // white
-    tbl: {bg: "#0A00AD", tx: "#DE0000"} // blue
+    gr: {bg: '#7AD000', tx: '#000000'}, // green
+    wh: {bg: "#FFFFFF", tx: "#070707"}, // white
+    bl: {bg: "#0A00AD", tx: "#DE0000"} // blue
 }
 
-var bratHtml = fs.readFileSync(`${process.cwd()}/assets/brat.html`, "utf-8")
-injectFontBase64()
-
+const fontData = {
+    familyName: "Arial Narrow",
+    base64: loadFontBase64("./assets/arial_narrow.ttf")
+}
 
 interface BratConfig {
     text: string,
@@ -25,15 +27,15 @@ interface BratConfig {
 }
 
 export default {
-    name: "brat",
+    name: "br",
     description: "Create brat images.",
-    async execute(msg, args) {
+    async execute(msg, trs, args) {
         const chat_id = msg.chat.id
-        const commandArgs = msg.text?.replace("/brat ", "").split(" ") as string[]
+        const commandArgs = msg.text?.replace("/br ", "").split(" ") as string[]
         const replied = msg.reply_to_message
 
         if (!replied) {
-            await getBot().sendMessage(chat_id, "Use /brat as a <b>reply to the message</b> you want to quote.", {
+            await getBot().sendMessage(chat_id, trs.get("cmds.brat.useBratAsReply"), {
                 parse_mode: "HTML",
                 reply_to_message_id: msg.message_id,
             })
@@ -43,10 +45,10 @@ export default {
 
         // get theme from props
         type ThemeKey = keyof typeof themeMap
-        const theme = commandArgs.map(arg => themeMap[arg as ThemeKey]).find(Boolean) ?? themeMap.tgr
+        const theme = commandArgs.map(arg => themeMap[arg as ThemeKey]).find(Boolean) ?? themeMap.gr
 
         // get font size (or use default)
-        var fontSize = 175
+        var fontSize = defaultPageConfig.fontSize
         const fsArg = commandArgs.find(arg => arg.startsWith("fs-"))
         if (fsArg) {
             const value = Number(fsArg.split("-")[1])
@@ -60,7 +62,7 @@ export default {
             theme: theme,
             fontSize: fontSize,
             removeBlurEffect: commandArgs.includes("rbe"),
-            rawPng: commandArgs.includes("raw"),
+            rawPng: commandArgs.includes("png"),
             showScribble: commandArgs.includes("scr"),
         } as BratConfig
 
@@ -81,26 +83,38 @@ export default {
     }
 } satisfies Command;
 
-function injectFontBase64() {
-    const fontPath = path.resolve("./assets/arial_narrow.ttf");
+function loadFontBase64(fPath: string): string {
+    const fontPath = path.resolve(fPath);
     const fontBuffer = fs.readFileSync(fontPath)
-    const fontBase64 = fontBuffer.toString("base64")
-    bratHtml = bratHtml.replace("__BASE64_HERE__", fontBase64)
+    return fontBuffer.toString("base64")
 }
 
 export async function generateBratImage(cfg: BratConfig) {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
-    let rp = bratHtml
-    rp = rp.replace("__TEXT__", cfg.text)
-    rp = rp.replace("font-size: 185px;", `font-size: ${cfg.fontSize}px;`)
-    rp = rp.replace("let fontSize = 185;", `let fontSize = ${cfg.fontSize};`)
-    rp = rp.replace("background: #7AD000;", `background: ${cfg.theme.bg};`)
-    rp = rp.replace("color: #000000;", `color: ${cfg.theme.tx};`)
-    if (cfg.removeBlurEffect) rp = rp.replace("filter: blur(5px);", "")
+    const isThemeWh = cfg.theme.bg == themeMap.wh.bg
 
-    await page.setContent(rp, {
+    const bratPage = createBratPage({
+        text: cfg.text.toString(),
+        blurAmount: cfg.removeBlurEffect ? 0 : defaultPageConfig.blurAmount,
+        theme: {
+            backgroundHex: cfg.theme.bg,
+            textHex: cfg.theme.tx,
+            boxPadding: isThemeWh ? 60 : 35
+        },
+        font: {
+            size: cfg.fontSize == defaultPageConfig.fontSize && isThemeWh ? defaultPageConfig.fontSize + 500 : cfg.fontSize,
+            weight: defaultPageConfig.fontWeight,
+            base64: fontData.base64,
+            familyName: fontData.familyName,
+            lineHeight: defaultPageConfig.lineHeight,
+            textAlign: isThemeWh ? "justify" : "center",
+            alignItems: "center",
+        }
+    })
+
+    await page.setContent(bratPage, {
         waitUntil: "networkidle2",
     });
 
@@ -109,13 +123,15 @@ export async function generateBratImage(cfg: BratConfig) {
         if (!el) return;
     });
 
-    await page.waitForFunction(() => {
-        const el = document.querySelector("#display");
-        if (!el) return false;
-        const style = getComputedStyle(el);
-        return style.fontFamily.includes("GeistLocal");
-    });
+    await page.waitForFunction(
+        (familyName) => {
+            const el = document.querySelector("#display");
+            if (!el) return false;
 
+            const style = getComputedStyle(el);
+            return style.fontFamily.includes(familyName);
+        }, {}, fontData.familyName
+    );
     await new Promise(resolve => setTimeout(resolve, 50));
 
     const el = await page.$("#bratBox");

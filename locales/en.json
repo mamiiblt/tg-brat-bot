@@ -1,0 +1,51 @@
+{
+  "general": {
+    "error": "⚠️ <b>An error occurred while running command.</b>",
+    "supportedLngs": "Also this bot supports <b>{{langs}}</b> languages now, if you want to add more languages you can send a pull request to <a href=\"https://github.com/mamiiblt/tg-brat-bot\">source code</a> of bot.",
+  },
+  "cmds": {
+    "start": {
+      "t1": "Welcome to the <b>brat Sticker Bot</b>",
+      "t2": "<b>Click the button below</b> or use the /helpb command for information on how to use the bot.",
+      "btn": "Click for Help!",
+      "giveAstar": "Give ⭐ in GitHub",
+      "supportGroup": "Join Support Group"
+    },
+    "brat": {
+      "useBratAsReply": "Use /br as a <b>reply to the message</b> you want to quote."
+    },
+    "status": {
+      "title": "Bot Container Status",
+      "usageTmpl": "{{name}} Usage",
+      "cpuLoad": "CPU Load",
+      "uptimeSys": "Uptime (System)",
+      "uptimeBot": "Uptime (Bot)",
+      "systemTime": "System Time"
+    },
+    "help": {
+      "categories": {
+        "default": "Default",
+        "usage": "Bot Usage",
+        "language": "Language Options",
+        "about": "About Bot"
+      },
+      "sectionLng": {
+        "pleaseSelect": "<b>Please select the category for which you need information / help.</b>",
+        "firstMsg": "If you reply to a message with the /br command, the bot will turn it into a brat sticker. If you want to customize the sticker, you can include the following parameters with the command:",
+        "commands": {
+          "rbe": "<b>rbe:</b> Removes the slight blur effect from the image.",
+          "png": "<b>png:</b> Sends it as a PNG instead of a sticker.",
+          "scr": "<b>scr:</b> Adds a scribble effect to the top",
+          "color": "<b>[color]:</b> Changes the background to green (gr is green, wh is white, bl is blue)",
+          "fs": "<b>fs-[number]:</b> Changes the font size. (default: 185)"
+        },
+        "cmdExample": "<b>Command Usage Examples:</b>"
+      },
+      "lang": "You can use /langb command for changing your language for this chat (only pm, group and supergroup is supported).",
+      "about": {
+        "text1": "If you'd like to view the source code, you can access it from <a href=\"https://github.com/mamiiblt/tg-brat-bot\">this repository</a> in GitHub. <i>(don’t forget to give a ⭐)</i>",
+        "text2": "Developed by <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> for fun"
+      }
+    }
+  }
+}

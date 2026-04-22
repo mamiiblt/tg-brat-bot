@@ -1,8 +1,10 @@
 import {Command} from "@/types/Command";
-import {loadCommands} from "@/bot/CommandHandler";
+import {loadCommands} from "@/utils/CommandHandler";
 import TelegramBot, {CallbackQuery, Message} from "node-telegram-bot-api";
-import {getMainCommand, sendMessage} from "@/bot/Utils";
-import {categoryNames, sendHelpMessage} from "@/commands/Help";
+import {getMainCommand, sendMessage} from "@/utils/BotUtils";
+import {getCategoryNames, sendHelpMessage} from "@/commands/Help";
+import {getTranslator, getUserLanguage} from "@/utils/i18n";
+import {changeUserLanguage} from "@/commands/Language";
 
 export const commands: Command[] = [];
 let bot: TelegramBot | null = null;
@@ -58,14 +60,15 @@ export async function setupBot() {
                 const commandName = messageArgs[0].replace("/", "")
 
                 if (command.name === getMainCommand(commandName.trim())) {
+                    const translator = getTranslator(await getUserLanguage(msg))
                     try {
-                        await command.execute(msg, messageArgs);
+                        await command.execute(msg, translator, messageArgs);
                     } catch (err) {
                         console.error(`❌ Error in ${command.name}:`, err);
                         await sendMessage({
                             chatId: msg.chat.id,
                             msg: msg,
-                            text: "⚠️ <b>An error occurred while running command.</b>",
+                            text: translator.get("general.error"),
                             replyToMessage: true,
                             msg_parse_mode: "HTML"
                         })
@@ -86,14 +89,19 @@ export async function setupBot() {
             if (ctx.data?.startsWith("help_scat_")) {
                 if (ctx.message != undefined) {
                     const categoryId = parseInt(ctx.data?.replace("help_scat_", ""))
-                    if (!ctx.message.text?.includes(categoryNames[categoryId])) {
+                    try {
                         await sendHelpMessage(ctx.message.chat.id, categoryId, ctx.message.message_id);
+                    } catch (e) {
+                        // do nothing, bcoz maybe user clicked to same category again.
                     }
                 }
+            }
+
+            if (ctx.data?.startsWith("sl_")) {
+                await changeUserLanguage(ctx)
             }
         } catch (e) {
             console.error(e);
         }
-
     })
 }

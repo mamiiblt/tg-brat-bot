@@ -1,14 +1,14 @@
-import {Command} from "@/types/Command";
-import {sendMessage} from "@/bot/Utils";
+import {Command, Translator} from "@/types/Command";
+import {sendMessage} from "@/utils/BotUtils";
 import * as os from "node:os";
 import prettyMs from "pretty-ms";
 
 export default {
     name: "status",
     description: "Shows technical status of bot",
-    async execute(msg, args) {
+    async execute(msg, trs, args) {
         const chatId = msg.chat.id;
-        const systemStatus = getSystemStatus();
+        const systemStatus = getSystemStatus(trs);
         await sendMessage({
             chatId,
             msg,
@@ -20,7 +20,7 @@ export default {
 
 } satisfies Command;
 
-function getSystemStatus(): string {
+function getSystemStatus(trs: Translator): string {
     const totalMem = os.totalmem();
     const freeMem = os.freemem();
     const usedMem = totalMem - freeMem;
@@ -30,22 +30,20 @@ function getSystemStatus(): string {
     const processUptime = prettyMs(process.uptime() * 1000, {verbose: true});
     const loadAvg = os.loadavg()[0].toFixed(2);
 
-    const now = new Date().toLocaleString("tr-TR", {
+    const now = new Date().toLocaleString("en-US", {
         timeZone: "Europe/Istanbul",
     });
 
     return `
-<b>Bot Container Status</b>
-
-<b>S-RAM Usage:</b> ${(usedMem / 1024 / 1024).toFixed(0)}MB / ${(
+<b>${trs.get("cmds.status.usageTmpl", {name: "S-RAM"})}:</b> ${(usedMem / 1024 / 1024).toFixed(0)}MB / ${(
         totalMem /
         1024 /
         1024
     ).toFixed(0)}MB (${memUsagePercent}%)
-<b>P-RAM Usage:</b> ${(processMem / 1024 / 1024).toFixed(1)}MB
-<b>CPU Load:</b> ${loadAvg}
-<b>Uptime (System):</b> ${uptime}
-<b>Uptime (Bot):</b> ${processUptime}
-<b>System Time:</b> ${now}
+<b>${trs.get("cmds.status.usageTmpl", {name: "P-RAM"})}:</b> ${(processMem / 1024 / 1024).toFixed(1)}MB
+<b>${trs.get("cmds.status.cpuLoad")}:</b> ${loadAvg}
+<b>${trs.get("cmds.status.uptimeSys")}:</b> ${uptime}
+<b>${trs.get("cmds.status.uptimeBot")}:</b> ${processUptime}
+<b>${trs.get("cmds.status.systemTime")}:</b> ${now}
   `.trim();
 }

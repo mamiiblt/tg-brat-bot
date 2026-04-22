@@ -1,0 +1,51 @@
+{
+  "general": {
+    "error": "⚠️ <b>Komut çalıştırılırken bir hata ile karşılaşıldı.</b>",
+    "supportedLngs": "Aynı zamanda bu bot güncel olarak <b>{{langs}}</b> dillerini destekliyor, eğer daha fazla dilin eklenmesine katkı sağlamak isterseniz botun <a href=\"https://github.com/mamiiblt/tg-brat-bot\">kaynak koduna</a> pull request atabilirsiniz."
+  },
+  "cmds": {
+    "start": {
+      "t1": "<b>brat Sticker Bot'una</b> hoş geldiniz!",
+      "t2": "Aşağıdaki <b>düğmeye tıklayarak</b> veya /helpb komutunu kullanarak botun <b>nasıl kullanıldığına dair</b> bilgi alabilirsiniz.",
+      "btn": "Yardımı görmek için tıkla!",
+      "giveAstar": "GitHub'da Bir ⭐ Verin",
+      "supportGroup": "Destek Grubuna Katıl"
+    },
+    "brat": {
+      "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /br komutu ile yanıtlayın."
+    },
+    "status": {
+      "title": "Bot Konteyner Durumu",
+      "usageTmpl": "{{name}} Kullanımı",
+      "cpuLoad": "İşlemci Yükü",
+      "uptimeSys": "Çalışma Süresi (Sistem)",
+      "uptimeBot": "Çalışma Süresi (Bot)",
+      "systemTime": "Sistem Saati"
+    },
+    "help": {
+      "categories": {
+        "default": "Varsayılan",
+        "usage": "Bot Kullanımı",
+        "language": "Dil Ayarları",
+        "about": "Bot Hakkında"
+      },
+      "sectionLng": {
+        "pleaseSelect": "<b>Lütfen yardım / bilgi almak istediğiniz kategoriyi aşağıdan seçiniz.</b>",
+        "firstMsg": "Bir mesajı brata çevirmek isterseniz o mesajı /br komutu ile yanıtlamanız yeterlidir. Eğer oluşturulacak bratı özelleştirmek isterseniz aşağıdaki argümanları komuta ekleyebilirsiniz:",
+        "commands": {
+          "rbe": "<b>rbe:</b> brat'ın hafif bulanıklık efektini kaldırır.",
+          "png": "<b>png:</b> Sticker yerine PNG olarak gönderir.",
+          "scr": "<b>scr:</b> Bir karalama efekti ekler",
+          "color": "<b>[color]:</b> Temayı değiştirir, her temanın farklı duruşları olabilir. (gr yeşil, wh beyaz, bl mavi renkleridir.)",
+          "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 185)"
+        },
+        "cmdExample": "<b>Komut Kullanım Örnekleri</b>"
+      },
+      "lang": "İsterseniz /langb komutunu kullanarak şu an ki sohbetteki botun dilini değiştirebilirsin (sadece özel sohbet, grup ve supergroup desteklenir)",
+      "about": {
+        "text1": "Eğer projenin kaynak kodunu incelemek isterseniz <a href=\"https://github.com/mamiiblt/tg-brat-bot\">bu kod deposundan</a> GitHub aracılığıyla ulaşabilirsiniz. <i>(hazır bakmışken bir ⭐ vermeyi unutmayın)</i>",
+        "text2": "Bu bot <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> tarafından geliştirilmiştir."
+      }
+    }
+  }
+}

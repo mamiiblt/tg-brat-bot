@@ -1,20 +1,23 @@
 import {Command} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
+import {getSupportedLanguagesText} from "@/commands/Language";
 
 export default {
     name: "start",
     description: "Start command of bot.",
-    async execute(msg, args) {
-        getBot().sendMessage(msg.chat.id, [
-            "Welcome to the <b>brat Sticker Bot</b>\n",
-            "<b>Click the button below</b> or use the <b>/help</b> command for information on how to use the bot."
-        ].join("\n"), {
+    async execute(msg, trs, args) {
+        await getBot().sendPhoto(msg.chat.id, "https://cdn.mamii.dev/utils/telegram/brat_bot_banner.png", {
             parse_mode: "HTML",
+            caption: [
+                `${trs.get("cmds.start.t1" )}\n`,
+                `${trs.get("cmds.start.t2" )}\n`,
+                getSupportedLanguagesText(trs)
+            ].join("\n"),
             reply_markup: {
                 inline_keyboard: [
-                    [
-                        { text: "Click for help!", callback_data: "start_send_help"}
-                    ]
+                    [{ text: trs.get("cmds.start.btn"), callback_data: "start_send_help" }],
+                    [{ text: trs.get("cmds.start.giveAstar"), url: "https://github.com/mamiiblt/tg-brat-bot" },],
+                    [{ text: trs.get("cmds.start.supportGroup"), url: "https://t.me/brat_support_group" },]
                 ]
             }
         })
