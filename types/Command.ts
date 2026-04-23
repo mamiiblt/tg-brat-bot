@@ -9,6 +9,6 @@ export interface Translator {
 export interface Command {
     name: string;
     description: string
-    execute: (msg: Message, i18n: Translator, args?: string[]) => Promise<void>;
+    execute: (msg: Message, i18n: Translator, args?: string[]) => Promise<any>;
     // i18n is user i18n, so it's customized for user lang.
 }

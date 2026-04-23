@@ -34,9 +34,12 @@ export async function sendHelpMessage(chatId: number, categoryId: number, messag
         [
             `${TRS.get("cmds.help.sectionLng.firstMsg")}\n`,
             lines.join("\n") + "\n",
+            TRS.get("cmds.help.sectionLng.saveUsageTitle"),
+            TRS.get("cmds.help.sectionLng.saveUsage") + "\n",
             TRS.get("cmds.help.sectionLng.cmdExample"),
             "/b raw wh fs-60",
-            "/b rbe raw bl"
+            "/b rbe raw bl",
+            "/bs"
         ],
         [
             TRS.get("cmds.help.lang")

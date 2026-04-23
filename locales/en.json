@@ -1,7 +1,7 @@
 {
   "general": {
     "error": "⚠️ <b>An error occurred while running command.</b>",
-    "supportedLngs": "Also this bot supports <b>{{langs}}</b> languages now, if you want to add more languages you can send a pull request to <a href=\"https://github.com/mamiiblt/tg-brat-bot\">source code</a> of bot.",
+    "supportedLngs": "Also this bot supports <b>{{langs}}</b> languages now, if you want to add more languages you can send a pull request to <a href=\"https://github.com/mamiiblt/tg-brat-bot\">source code</a> of bot."
   },
   "cmds": {
     "start": {
@@ -39,6 +39,8 @@
           "color": "<b>[color]:</b> Changes the background to green (gr is green, wh is white, bl is blue)",
           "fs": "<b>fs-[number]:</b> Changes the font size. (default: 185)"
         },
+        "saveUsageTitle": "<b>Group Sticker Packs</b>",
+        "saveUsage": "If you want, you can save generated brat stickers into group sticker pack with /bs command. That command doesn't needs any argument or something else.",
         "cmdExample": "<b>Command Usage Examples:</b>"
       },
       "lang": "You can use /langb command for changing your language for this chat (only pm, group and supergroup is supported).",
@@ -46,6 +48,23 @@
         "text1": "If you'd like to view the source code, you can access it from <a href=\"https://github.com/mamiiblt/tg-brat-bot\">this repository</a> in GitHub. <i>(don’t forget to give a ⭐)</i>",
         "text2": "Developed by <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> for fun"
       }
+    },
+    "save": {
+      "baseErrs": {
+        "onlyGroup": "⚠️ This command can be used only in groups and supergroups.",
+        "replyRequired": "You need to reply a message for save it into sticker pack.",
+        "allowedMedia": "To save it, you need to reply to a sticker or photo. Other types aren't allowed.",
+        "idIsUnknown": "The sender of the message is unknown; please try again or ask someone else to save it.",
+        "invalidPerms": "You must be an administrator to use this command.",
+        "maxSizeReached": "The current group pack has <b>reached its maximum number of stickers ({{maxSize}})</b>, so a new pack is being created."
+      },
+      "errs": {
+        "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animated stickers and videos isn't allowed to add into pack.",
+        "UNKNOWN_ERROR": "⚠️ An unknown error occurred in bot side, please try again or report that to bot developer.",
+        "USER_NOT_STARTED_BOT": "⚠️ To create or manage sticker packs, Telegram requires you to start the bot in private messages first. Please click 👉 @brat_sticker_bot and press <b>START</b>, then try again."
+      },
+      "SUCCESS_CREATE": "A new sticker pack of brats for this group <b>({{chatName}})</b> has been created by <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> right now. You can add more stickers with /bs command into <a href=\"{{packUrl}}\">that new pack.</a>",
+      "SUCCESS_ADD": "Sticker has been successfully added to the <a href=\"{{packUrl}}\">group brat sticker pack.</a> "
     }
   }
 }

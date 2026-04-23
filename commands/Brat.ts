@@ -77,8 +77,6 @@ export default {
                 reply_to_message_id: msg.message_id,
             })
         }
-
-        console.log(bratConfig);
     }
 } satisfies Command;
 

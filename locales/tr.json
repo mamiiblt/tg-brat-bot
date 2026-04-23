@@ -39,6 +39,8 @@
           "color": "<b>[color]:</b> Temayı değiştirir, her temanın farklı duruşları olabilir. (gr yeşil, wh beyaz, bl mavi renkleridir.)",
           "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 185)"
         },
+        "saveUsageTitle": "<b>Grup Çıkartma Paketleri</b>",
+        "saveUsage": "İsterseniz bu bot ile oluşturduğunuz çıkartmaları /bs komutu ile grubunuzun çıkartma paketine ekleyebilirsiniz. Bu komuta herhangi bir argüman veya ek yazılamaz.",
         "cmdExample": "<b>Komut Kullanım Örnekleri</b>"
       },
       "lang": "İsterseniz /langb komutunu kullanarak şu an ki sohbetteki botun dilini değiştirebilirsin (sadece özel sohbet, grup ve supergroup desteklenir)",
@@ -46,6 +48,23 @@
         "text1": "Eğer projenin kaynak kodunu incelemek isterseniz <a href=\"https://github.com/mamiiblt/tg-brat-bot\">bu kod deposundan</a> GitHub aracılığıyla ulaşabilirsiniz. <i>(hazır bakmışken bir ⭐ vermeyi unutmayın)</i>",
         "text2": "Bu bot <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> tarafından geliştirilmiştir."
       }
+    },
+    "save": {
+      "baseErrs": {
+        "onlyGroup": "⚠️ Bu komut sadece gruplar ve süpergruplarda kullanılmak üzere tasarlanmıştır.",
+        "replyRequired": "Bir çıkartmayı grup paketine kaydedebilmen için bu komutu o çıkartma / resim'e yanıt olarak yazman gerekiyor.",
+        "allowedMedia": "Sadece çıkartma ve fotoğrafları pakete kaydedebilirsin. Diğer türler desteklenmemektedir.",
+        "idIsUnknown": "Senin kullanıcı ID'ni bilmiyorum; Bota özelden yazıp /start demelisin.",
+        "invalidPerms": "Bu komutu kullanabilmen için yetkili olman gerekiyor, üzgünüm 😭",
+        "maxSizeReached": "Mevcut grup çıkartma paketi <b>maksimum çıkartma sayısına ({{maxSize}}) ulaştı</b>, yeni bir grup çıkartma paketi oluşturuluyor."
+      },
+      "errs": {
+        "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animasyonlu veya videolu çıkartmalar grup paketine eklenemez.",
+        "UNKNOWN_ERROR": "⚠️ Bot tarafında bilinmeyen bir hata oluştu, lütfen tekrar deneyin veya botun geliştiricisine geri bildirimde bulunun.",
+        "USER_NOT_STARTED_BOT": "⚠️ Telegram sizin adınıza çıkartma paketleri oluşturabilmek için sizi tanıması gerekmektedir. Lütfen özelden 👉 @brat_sticker_bot'a tıklayın ve <b>BAŞLAT</b> düğmesine dokunun ve ardından tekrar deneyin."
+      },
+      "SUCCESS_CREATE": "Bu sohbet <b>({{chatName}})</b> için <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> tarafından yeni bir grup çıkartma paketi oluşturuldu. <a href=\"{{packUrl}}\">Bu pakete</a> isterseniz /bs komutu ile daha fazla çıkartma ekleyebilirsiniz.",
+      "SUCCESS_ADD": "Çıkartma başarıyla <a href=\"{{packUrl}}\">grup brat çıkartma paketine</a> eklendi 🎉"
     }
   }
 }

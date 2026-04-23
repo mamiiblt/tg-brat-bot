@@ -9,6 +9,18 @@ export function getMainCommand(message: string) {
     }
 }
 
+export function getMessageType(msg: Message): "text" | "photo" | "video" | "document" | "sticker" | "voice" | "audio" | "gif" | "unknown" {
+    if (msg.text) return "text"
+    if (msg.photo) return "photo"
+    if (msg.video) return "video"
+    if (msg.document) return "document"
+    if (msg.sticker) return "sticker"
+    if (msg.voice) return "voice"
+    if (msg.audio) return "audio"
+    if (msg.animation) return "gif"
+    return "unknown"
+}
+
 export async function sendMessage(msgOptions: {
     chatId: number;
     msg: Message;
