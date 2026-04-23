@@ -82,7 +82,7 @@ export async function setupBot() {
         try {
             if (ctx.data == "start_send_help") {
                 if (ctx.message != undefined) {
-                    await sendHelpMessage(ctx.message.chat.id, 0)
+                    await sendHelpMessage(ctx.message.chat.id, 0, ctx.message.message_thread_id)
                 }
             }
 
@@ -90,7 +90,7 @@ export async function setupBot() {
                 if (ctx.message != undefined) {
                     const categoryId = parseInt(ctx.data?.replace("help_scat_", ""))
                     try {
-                        await sendHelpMessage(ctx.message.chat.id, categoryId, ctx.message.message_id);
+                        await sendHelpMessage(ctx.message.chat.id, categoryId, undefined, ctx.message.message_id);
                     } catch (e) {
                         // do nothing, bcoz maybe user clicked to same category again.
                     }

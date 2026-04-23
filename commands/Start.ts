@@ -8,6 +8,7 @@ export default {
     async execute(msg, trs, args) {
         await getBot().sendPhoto(msg.chat.id, "https://cdn.mamii.dev/utils/telegram/brat_bot_banner.png", {
             parse_mode: "HTML",
+            message_thread_id: msg.message_thread_id,
             caption: [
                 `${trs.get("cmds.start.t1" )}\n`,
                 `${trs.get("cmds.start.t2" )}\n`,

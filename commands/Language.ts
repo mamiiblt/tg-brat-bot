@@ -49,6 +49,7 @@ export default {
         ].join("\n"), {
             parse_mode: "HTML",
             disable_web_page_preview: true,
+            message_thread_id: msg.message_thread_id,
             reply_markup: {
                 inline_keyboard: langButtons
             }
@@ -73,6 +74,7 @@ export async function changeUserLanguage(ctx: CallbackQuery) {
 
         await getBot().sendMessage(chatId, setMessage, {
             parse_mode: "HTML",
+            message_thread_id: ctx.message?.message_thread_id
         });
 
         await getBot().answerCallbackQuery(ctx.id);

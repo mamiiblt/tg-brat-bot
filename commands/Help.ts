@@ -9,7 +9,7 @@ export default {
     description: "Shows help command of bot",
     async execute(msg, trs, args) {
         TRS = trs
-        await sendHelpMessage(msg.chat.id, 0)
+        await sendHelpMessage(msg.chat.id, 0, msg.message_thread_id)
     }
 
 } satisfies Command;
@@ -23,7 +23,7 @@ export function getCategoryNames(trs: Translator) {
     ]
 }
 
-export async function sendHelpMessage(chatId: number, categoryId: number, messageId?: number) {
+export async function sendHelpMessage(chatId: number, categoryId: number, threadId: number | undefined, messageId?: number) {
     const keys = ["rbe", "png", "scr", "color", "fs"]
     const lines: string[] = []
     keys.forEach((key) => lines.push(`• ${TRS.get(`cmds.help.sectionLng.commands.${key}`)}`))
@@ -68,14 +68,15 @@ export async function sendHelpMessage(chatId: number, categoryId: number, messag
             categoryContents[categoryId].join("\n"),
         ].join("\n"), {
             parse_mode: "HTML",
-            reply_markup: buttons
+            reply_markup: buttons,
+            message_thread_id: threadId
         })
     } else {
         await getBot().editMessageText(categoryContents[categoryId].join("\n"), {
             chat_id: chatId,
             message_id: messageId,
             parse_mode: "HTML",
-            reply_markup: buttons
+            reply_markup: buttons,
         })
     }
 }

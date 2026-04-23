@@ -10,6 +10,7 @@ const MAX_STICKER_PACK_SIZE = 120
 async function sendError(msg: Message, content: string) {
     await getBot().sendMessage(msg.chat.id, content, {
         parse_mode: "HTML",
+        message_thread_id: msg.message_thread_id,
         reply_to_message_id: msg.message_id
     })
 }
@@ -60,6 +61,7 @@ export default {
 
             await getBot().sendMessage(msg.chat.id, message!!, {
                 parse_mode: "HTML",
+                message_thread_id: msg.message_thread_id,
                 reply_to_message_id: msg.message_id
             })
         } else {
@@ -76,6 +78,7 @@ export default {
 
             await getBot().sendMessage(msg.chat.id, message!!, {
                 parse_mode: "HTML",
+                message_thread_id: msg.message_thread_id,
                 reply_to_message_id: msg.message_id
             })
         }

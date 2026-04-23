@@ -37,6 +37,7 @@ export default {
             await getBot().sendMessage(chat_id, trs.get("cmds.brat.useBratAsReply"), {
                 parse_mode: "HTML",
                 reply_to_message_id: msg.message_id,
+                message_thread_id: msg.message_thread_id
             })
 
             return;
@@ -71,10 +72,12 @@ export default {
         if (bratConfig.rawPng) {
             getBot().sendPhoto(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
+                message_thread_id: msg.message_thread_id,
             })
         } else {
             getBot().sendSticker(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
+                message_thread_id: msg.message_thread_id,
             })
         }
     }
