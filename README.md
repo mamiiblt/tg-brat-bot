@@ -1,5 +1,7 @@
 # brat Sticker Bot
 
+> ⚠️ Realizing that the bot wasn’t all that great conceptually, I figured it wasn’t even worth the 300 MB of RAM it would consume on my personal server. So I shut it down, but if you’d like, you can fork the source code and deploy the Brat bot on your own server.
+
 With that bot, you can create brat stickers with /b command. You can use bot from [this link](https://t.me/brat_sticker_bot) directly. Also if you want to contribute source code, you can send pull request from this repository.
 
 ## Adding Translations
