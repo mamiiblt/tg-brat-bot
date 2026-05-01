@@ -1,3 +1,10 @@
+/*
+ * (c) 2026 Muhammed Ali (a.k.a. mamiiblt), All rights reserved.
+ *
+ * For copyright notices, technical issues, feedback, or any other
+ * inquiries related to this code file or project, please contact mamii@mamii.dev
+ */
+
 import i18next from "i18next";
 import fsBackend from "i18next-fs-backend";
 import TelegramBot, {Message} from "node-telegram-bot-api";
