@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import fsBackend from "i18next-fs-backend";
-import {Message} from "node-telegram-bot-api";
+import TelegramBot, {Message} from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
 import languages from "@/utils/languages";
 
@@ -16,15 +16,15 @@ export const defaultLanguage = {
     source: "def"
 } as UserLanguage
 
-export async function getUserLanguage(msg: Message): Promise<UserLanguage> {
-    if (msg.from?.id == undefined) return defaultLanguage
+export async function getUserLanguage(user: TelegramBot.User | undefined): Promise<UserLanguage> {
+    if (user == undefined) return defaultLanguage
 
     const chatSavedLocale = await RDatabase.query(
-        `SELECT lang_code FROM brat_bot.chat_languages WHERE chat_id = $1`,
-        [msg.chat.id]
+        `SELECT lang_code FROM brat_bot.chat_data WHERE chat_id = $1`,
+        [user.id]
     )
 
-    const messageSenderLocale = msg.from.language_code
+    const messageSenderLocale = user.language_code
     const isChatLocaleSaved = chatSavedLocale.rows.length == 1
 
     if (isChatLocaleSaved) return {

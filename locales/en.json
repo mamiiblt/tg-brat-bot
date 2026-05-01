@@ -12,7 +12,8 @@
       "supportGroup": "Join Support Group"
     },
     "brat": {
-      "useBratAsReply": "Use /b as a <b>reply to the message</b> you want to quote."
+      "useBratAsReply": "Use /b as a <b>reply to the message</b> you want to quote.",
+      "saveToStickerPack": "💾 Save to group pack"
     },
     "status": {
       "title": "Bot Container Status",
@@ -51,12 +52,12 @@
     },
     "save": {
       "baseErrs": {
-        "onlyGroup": "⚠️ This command can be used only in groups and supergroups.",
-        "replyRequired": "You need to reply a message for save it into sticker pack.",
-        "allowedMedia": "To save it, you need to reply to a sticker or photo. Other types aren't allowed.",
-        "idIsUnknown": "The sender of the message is unknown; please try again or ask someone else to save it.",
-        "invalidPerms": "You must be an administrator to use this command.",
-        "maxSizeReached": "The current group pack has <b>reached its maximum number of stickers ({{maxSize}})</b>, so a new pack is being created."
+        "onlyGroup": "this feature can be used only in groups and supergroups.",
+        "replyRequired": "you need to reply a message for save it into sticker pack.",
+        "allowedMedia": "to save it, you need to reply to a sticker or photo. Other types aren't allowed.",
+        "idIsUnknown": "the sender of the message is unknown; please try again or ask someone else to save it.",
+        "invalidPerms": "you must be an administrator to use this feature.",
+        "maxSizeReached": "the current group pack has <b>reached its maximum number of stickers ({{maxSize}})</b>, so a new pack is being created."
       },
       "errs": {
         "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animated stickers and videos isn't allowed to add into pack.",
@@ -64,7 +65,23 @@
         "USER_NOT_STARTED_BOT": "⚠️ To create or manage sticker packs, Telegram requires you to start the bot in private messages first. Please click 👉 @brat_sticker_bot and press <b>START</b>, then try again."
       },
       "SUCCESS_CREATE": "A new sticker pack of brats for this group <b>({{chatName}})</b> has been created by <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> right now. You can add more stickers with /bs command into <a href=\"{{packUrl}}\">that new pack.</a>",
-      "SUCCESS_ADD": "Sticker has been successfully added to the <a href=\"{{packUrl}}\">group brat sticker pack.</a> "
+      "SUCCESS_ADD": "Sticker has been successfully added to the <a href=\"{{packUrl}}\">group brat sticker pack</a> successfully by <a href=\"{{adderUserId}}\"><b>{{adderName}}</b></a>"
+    },
+    "wh": {
+      "errs": {
+        "onlyGroup": "This command is designed for groups, not personal messages.",
+        "thisIsNotNumeric":  "Value: <i>{{value}}</i> isn't looks like a numeric ID value",
+        "thisIdIsntInThisChat": "There is no one with this ID in this group. Please check it again.",
+        "userCheck": {
+          "isLeftOrKicked": "Unfortunately, this user cannot be added to the whitelist due to their role in the group. They may have been banned, left, or removed from the group. User's role: <i>{{role}}</i>",
+          "userIsAdmin": "This user is already an administrator in this group, so this user can freely save stickers already. User's role: <i>{{role}}</i>",
+          "unknown": "This user's role and permissions in the group could not be determined for an unknown reason. Maybe he/she isn't joined this group or anything else."
+        },
+        "dbQuery": {
+          "alreadyAdded": "This user is already added to whitelist. You can check all whitelisted users with /wh_list command."
+        }
+      },
+      "success": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> added to whitelist successfully by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>"
     }
   }
 }

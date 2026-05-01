@@ -1,7 +1,7 @@
-import {setupBot} from "@/bot/BratBot";
 import dotenv from "dotenv";
 import {setupI18n} from "@/utils/i18n";
 import {connectRemoteDb} from "@/utils/RDatabase";
+import {setupBot} from "@/bot/BratBot";
 
 async function start() {
     dotenv.config({ path: ".env" });
@@ -11,4 +11,4 @@ async function start() {
     await setupBot()
 }
 
-start().then(r => console.log("All start tasks successfully operated."));
+start().then(r => {})

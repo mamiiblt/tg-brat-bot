@@ -12,7 +12,8 @@
       "supportGroup": "Destek Grubuna Katıl"
     },
     "brat": {
-      "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /b komutu ile yanıtlayın."
+      "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /b komutu ile yanıtlayın.",
+      "saveToStickerPack": "💾 Grup paketine kaydet"
     },
     "status": {
       "title": "Bot Konteyner Durumu",
@@ -51,12 +52,12 @@
     },
     "save": {
       "baseErrs": {
-        "onlyGroup": "⚠️ Bu komut sadece gruplar ve süpergruplarda kullanılmak üzere tasarlanmıştır.",
-        "replyRequired": "Bir çıkartmayı grup paketine kaydedebilmen için bu komutu o çıkartma / resim'e yanıt olarak yazman gerekiyor.",
-        "allowedMedia": "Sadece çıkartma ve fotoğrafları pakete kaydedebilirsin. Diğer türler desteklenmemektedir.",
-        "idIsUnknown": "Senin kullanıcı ID'ni bilmiyorum; Bota özelden yazıp /start demelisin.",
-        "invalidPerms": "Bu komutu kullanabilmen için yetkili olman gerekiyor, üzgünüm 😭",
-        "maxSizeReached": "Mevcut grup çıkartma paketi <b>maksimum çıkartma sayısına ({{maxSize}}) ulaştı</b>, yeni bir grup çıkartma paketi oluşturuluyor."
+        "onlyGroup": "bu işlev sadece gruplar ve süpergruplarda kullanılmak üzere tasarlanmıştır.",
+        "replyRequired": "bir çıkartmayı grup paketine kaydedebilmen için bu komutu o çıkartma / resim'e yanıt olarak yazman gerekiyor.",
+        "allowedMedia": "sadece çıkartma ve fotoğrafları pakete kaydedebilirsin. Diğer türler desteklenmemektedir.",
+        "idIsUnknown": "senin kullanıcı ID'ni bilmiyorum; Bota özelden yazıp /start demelisin.",
+        "invalidPerms": "bu işlevi kullanabilmen için yetkili olman gerekiyor, üzgünüm 😭",
+        "maxSizeReached": "mevcut grup çıkartma paketi <b>maksimum çıkartma sayısına ({{maxSize}}) ulaştı</b>, yeni bir grup çıkartma paketi oluşturuluyor."
       },
       "errs": {
         "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animasyonlu veya videolu çıkartmalar grup paketine eklenemez.",
@@ -64,7 +65,7 @@
         "USER_NOT_STARTED_BOT": "⚠️ Telegram sizin adınıza çıkartma paketleri oluşturabilmek için sizi tanıması gerekmektedir. Lütfen özelden 👉 @brat_sticker_bot'a tıklayın ve <b>BAŞLAT</b> düğmesine dokunun ve ardından tekrar deneyin."
       },
       "SUCCESS_CREATE": "Bu sohbet <b>({{chatName}})</b> için <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> tarafından yeni bir grup çıkartma paketi oluşturuldu. <a href=\"{{packUrl}}\">Bu pakete</a> isterseniz /bs komutu ile daha fazla çıkartma ekleyebilirsiniz.",
-      "SUCCESS_ADD": "Çıkartma başarıyla <a href=\"{{packUrl}}\">grup brat çıkartma paketine</a> eklendi 🎉"
+      "SUCCESS_ADD": "Çıkartma başarıyla <a href=\"{{adderUserId}}\"><b>{{adderName}}</b></a> tarafından <a href=\"{{packUrl}}\">grup brat çıkartma paketine</a> eklendi 🎉"
     }
   }
 }

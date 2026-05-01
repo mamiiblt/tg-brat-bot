@@ -86,7 +86,7 @@ export async function changeUserLanguage(ctx: CallbackQuery) {
 
 export async function updateLanguageInDb(chatId: number, langCode: string) {
     await RDatabase.query(`
-        INSERT INTO brat_bot.chat_languages (chat_id, lang_code)
+        INSERT INTO brat_bot.chat_data (chat_id, lang_code)
         VALUES ($1, $2)
         ON CONFLICT (chat_id)
             DO UPDATE SET lang_code = $3

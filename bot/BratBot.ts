@@ -5,6 +5,7 @@ import {getMainCommand, sendMessage} from "@/utils/BotUtils";
 import {sendHelpMessage} from "@/commands/Help";
 import {getTranslator, getUserLanguage} from "@/utils/i18n";
 import {changeUserLanguage} from "@/commands/Language";
+import {saveSticker} from "@/commands/SaveSticker";
 
 export const commands: Command[] = [];
 let bot: TelegramBot | null = null;
@@ -60,7 +61,7 @@ export async function setupBot() {
                 const commandName = messageArgs[0].replace("/", "")
 
                 if (command.name === getMainCommand(commandName.trim())) {
-                    const translator = getTranslator(await getUserLanguage(msg))
+                    const translator = getTranslator(await getUserLanguage(msg.from))
                     try {
                         await command.execute(msg, translator, messageArgs);
                     } catch (err) {
@@ -99,6 +100,12 @@ export async function setupBot() {
 
             if (ctx.data?.startsWith("sl_")) {
                 await changeUserLanguage(ctx)
+            }
+
+            // BU SATIRLAR TUGBİSE GELSİN
+            if (ctx.data == "save_sticker") {
+                const trs = getTranslator(await getUserLanguage(ctx.from))
+                await saveSticker(trs, ctx.message!!, ctx.from)
             }
         } catch (e) {
             console.error(e);

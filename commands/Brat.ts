@@ -4,6 +4,7 @@ import * as fs from "node:fs";
 import {getBrowser} from "@/bot/Browser";
 import path from "node:path";
 import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
+import {InlineKeyboardMarkup} from "node-telegram-bot-api";
 
 const themeMap = {
     gr: {bg: '#7AD000', tx: '#000000'}, // green
@@ -69,17 +70,25 @@ export default {
         const pngFile = await generateBratImage(bratConfig)
         const buffer = Buffer.from(pngFile);
 
+        const isChatGroup = msg.chat.type === "group" || msg.chat.type === "supergroup";
+        const replyMarkup: InlineKeyboardMarkup = isChatGroup ? {
+            inline_keyboard: [
+                [{ text: trs.get("cmds.brat.saveToStickerPack"), callback_data: "save_sticker" }]
+            ]
+        } : { inline_keyboard: [] }
+
         if (bratConfig.rawPng) {
             getBot().sendPhoto(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
+                reply_markup: replyMarkup
             })
         } else {
             getBot().sendSticker(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
-            })
-        }
+                reply_markup: replyMarkup
+        })}
     }
 } satisfies Command;
 

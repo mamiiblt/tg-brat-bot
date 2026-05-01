@@ -21,6 +21,29 @@ export function getMessageType(msg: Message): "text" | "photo" | "video" | "docu
     return "unknown"
 }
 
+export async function sendError(msg: Message, content: string, actionUser: TelegramBot.User, mentionUser: boolean) {
+    await getBot().sendMessage(msg.chat.id,
+        `${mentionUser ? getMentionTag(actionUser) + ", " : "" }${content}`, {
+            parse_mode: "HTML",
+            message_thread_id: msg.message_thread_id,
+            reply_to_message_id: mentionUser ? undefined : msg.message_id
+        })
+}
+
+export function getMentionTag(actionUser: TelegramBot.User) {
+    const main = `<b>${actionUser.username != undefined ? `@${actionUser.username}` : actionUser.first_name}</b>`
+    if (actionUser.username != undefined) {
+        return `<a href="tg://user?id=${actionUser.id}">${main}</a>`
+    } else {
+        return main
+    }
+}
+
+export function isNumeric(str: string | undefined): boolean {
+    if (str == undefined) return false
+    return !isNaN(Number(str));
+}
+
 export async function sendMessage(msgOptions: {
     chatId: number;
     msg: Message;
