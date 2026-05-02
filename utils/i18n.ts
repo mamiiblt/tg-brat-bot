@@ -23,25 +23,45 @@ export const defaultLanguage = {
     source: "def"
 } as UserLanguage
 
-export async function getUserLanguage(user: TelegramBot.User | undefined): Promise<UserLanguage> {
-    if (user == undefined) return defaultLanguage
+type ChatType = "public" | "private";
+
+export function getChatType(chatT: TelegramBot.ChatType): ChatType {
+    let chatType: ChatType = "private";
+    const publicTypes = ["group", "supergroup", "channel"]
+    if (publicTypes.includes(chatT)) chatType = "public"
+    if (chatT === "private") chatType = "private"
+    return chatType
+}
+
+async function getDbSavedLocale(userId: number) {
+
+
+    return
+}
+
+export async function getChatLanguage(chatType: "public" | "private", user?: TelegramBot.User, chatId?: number): Promise<UserLanguage> {
+    console.log(`chatType: ${chatType}`)
+    console.log(`chatId: ${chatId}`)
 
     const chatSavedLocale = await RDatabase.query(
         `SELECT lang_code FROM brat_bot.chat_data WHERE chat_id = $1`,
-        [user.id]
+        [chatId]
     )
-
-    const messageSenderLocale = user.language_code
     const isChatLocaleSaved = chatSavedLocale.rows.length == 1
-
     if (isChatLocaleSaved) return {
         code: chatSavedLocale.rows[0].lang_code,
         source: "db"
     }
 
-    if (messageSenderLocale != undefined) return {
-        code: messageSenderLocale.split("-")[0],
-        source: "tg"
+    if (chatType === "private") {
+        const messageSenderLocale = user!!.language_code
+        console.log(chatSavedLocale.rows.length)
+
+
+        if (messageSenderLocale != undefined) return {
+            code: messageSenderLocale.split("-")[0],
+            source: "tg"
+        }
     }
 
     return defaultLanguage

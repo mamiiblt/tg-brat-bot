@@ -7,10 +7,10 @@
 
 import {Command} from "@/types/Command";
 import {loadCommands} from "@/utils/CommandHandler";
-import TelegramBot, {CallbackQuery, Message} from "node-telegram-bot-api";
+import TelegramBot, {CallbackQuery, ChatType, Message} from "node-telegram-bot-api";
 import {getMainCommand, sendMessage} from "@/utils/BotUtils";
 import {sendHelpMessage} from "@/commands/Help";
-import {getTranslator, getUserLanguage} from "@/utils/i18n";
+import {getChatLanguage, getChatType, getTranslator} from "@/utils/i18n";
 import {changeUserLanguage} from "@/commands/Language";
 import {saveSticker} from "@/commands/SaveSticker";
 
@@ -68,7 +68,10 @@ export async function setupBot() {
                 const commandName = messageArgs[0].replace("/", "")
 
                 if (command.name === getMainCommand(commandName.trim())) {
-                    const translator = getTranslator(await getUserLanguage(msg.from))
+
+
+                    const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
+                    console.log(translator.userLng)
                     try {
                         await command.execute(msg, translator, messageArgs);
                     } catch (err) {
@@ -111,7 +114,7 @@ export async function setupBot() {
 
             // BU SATIRLAR TUGBİSE GELSİN
             if (ctx.data == "save_sticker") {
-                const trs = getTranslator(await getUserLanguage(ctx.from))
+                const trs = getTranslator(await getChatLanguage(getChatType(ctx.message?.chat.type!!), ctx.from, ctx.message?.chat.id))
                 await saveSticker(trs, ctx.message!!, ctx.from)
             }
         } catch (e) {

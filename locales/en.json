@@ -52,12 +52,12 @@
     },
     "save": {
       "baseErrs": {
-        "onlyGroup": "this feature can be used only in groups and supergroups.",
-        "replyRequired": "you need to reply a message for save it into sticker pack.",
-        "allowedMedia": "to save it, you need to reply to a sticker or photo. Other types aren't allowed.",
-        "idIsUnknown": "the sender of the message is unknown; please try again or ask someone else to save it.",
-        "invalidPerms": "you must be an administrator to use this feature.",
-        "maxSizeReached": "the current group pack has <b>reached its maximum number of stickers ({{maxSize}})</b>, so a new pack is being created."
+        "onlyGroup": "This feature can be used only in groups and supergroups.",
+        "replyRequired": "You need to reply a message for save it into sticker pack.",
+        "allowedMedia": "To save it, you need to reply to a sticker or photo. Other types aren't allowed.",
+        "idIsUnknown": "The sender of the message is unknown; please try again or ask someone else to save it.",
+        "invalidPerms": "You must be an administrator to use this feature.",
+        "maxSizeReached": "The current group pack has <b>reached its maximum number of stickers ({{maxSize}})</b>, so a new pack is being created."
       },
       "errs": {
         "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animated stickers and videos isn't allowed to add into pack.",
@@ -72,16 +72,16 @@
         "onlyGroup": "This command is designed for groups, not personal messages.",
         "thisIsNotNumeric":  "Value: <i>{{value}}</i> isn't looks like a numeric ID value",
         "thisIdIsntInThisChat": "There is no one with this ID in this group. Please check it again.",
-        "userCheck": {
-          "isLeftOrKicked": "Unfortunately, this user cannot be added to the whitelist due to their role in the group. They may have been banned, left, or removed from the group. User's role: <i>{{role}}</i>",
-          "userIsAdmin": "This user is already an administrator in this group, so this user can freely save stickers already. User's role: <i>{{role}}</i>",
-          "unknown": "This user's role and permissions in the group could not be determined for an unknown reason. Maybe he/she isn't joined this group or anything else."
-        },
-        "dbQuery": {
-          "alreadyAdded": "This user is already added to whitelist. You can check all whitelisted users with /wh_list command."
-        }
+        "isLeftOrKicked": "Unfortunately, this user cannot be added to the whitelist due to their role in the group. They may have been banned, left, or removed from the group. User's role: <i>{{role}}</i>",
+        "unknown": "This user's role and permissions in the group could not be determined for an unknown reason. Maybe there's no any user with this ID, he/she isn't joined this group or anything else.",
+        "alreadyAdded": "This user is already added to whitelist. You can check all whitelisted users with /wh_list command.",
+        "notAdded": "This user is not on the whitelist or the ID is incorrect; please check again (you can list everyone added to the whitelist using /wh_list)",
+        "anErrorOccurred": "An unknown error occurred while listing whitelisted users, please try again or report to developer."
       },
-      "success": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> added to whitelist successfully by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>"
+      "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> added to whitelist successfully by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
+      "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> is removed from whitelist by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
+      "loading": "⏳ Users Loading...",
+      "listingHeader": "<b>Totally {{userSize}} user is whitelisted in this group</b>"
     }
   }
 }

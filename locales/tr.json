@@ -52,12 +52,12 @@
     },
     "save": {
       "baseErrs": {
-        "onlyGroup": "bu işlev sadece gruplar ve süpergruplarda kullanılmak üzere tasarlanmıştır.",
-        "replyRequired": "bir çıkartmayı grup paketine kaydedebilmen için bu komutu o çıkartma / resim'e yanıt olarak yazman gerekiyor.",
-        "allowedMedia": "sadece çıkartma ve fotoğrafları pakete kaydedebilirsin. Diğer türler desteklenmemektedir.",
-        "idIsUnknown": "senin kullanıcı ID'ni bilmiyorum; Bota özelden yazıp /start demelisin.",
-        "invalidPerms": "bu işlevi kullanabilmen için yetkili olman gerekiyor, üzgünüm 😭",
-        "maxSizeReached": "mevcut grup çıkartma paketi <b>maksimum çıkartma sayısına ({{maxSize}}) ulaştı</b>, yeni bir grup çıkartma paketi oluşturuluyor."
+        "onlyGroup": "Bu işlev sadece gruplar ve süpergruplarda kullanılmak üzere tasarlanmıştır.",
+        "replyRequired": "Bir çıkartmayı grup paketine kaydedebilmen için bu komutu o çıkartma / resim'e yanıt olarak yazman gerekiyor.",
+        "allowedMedia": "Sadece çıkartma ve fotoğrafları pakete kaydedebilirsin. Diğer türler desteklenmemektedir.",
+        "idIsUnknown": "Senin kullanıcı ID'ni bilmiyorum; Bota özelden yazıp /start demelisin.",
+        "invalidPerms": "Bu işlevi kullanabilmen için yetkili olman gerekiyor, üzgünüm 😭",
+        "maxSizeReached": "Mevcut grup çıkartma paketi <b>maksimum çıkartma sayısına ({{maxSize}}) ulaştı</b>, yeni bir grup çıkartma paketi oluşturuluyor."
       },
       "errs": {
         "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animasyonlu veya videolu çıkartmalar grup paketine eklenemez.",
@@ -66,6 +66,22 @@
       },
       "SUCCESS_CREATE": "Bu sohbet <b>({{chatName}})</b> için <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> tarafından yeni bir grup çıkartma paketi oluşturuldu. <a href=\"{{packUrl}}\">Bu pakete</a> isterseniz /bs komutu ile daha fazla çıkartma ekleyebilirsiniz.",
       "SUCCESS_ADD": "Çıkartma başarıyla <a href=\"{{adderUserId}}\"><b>{{adderName}}</b></a> tarafından <a href=\"{{packUrl}}\">grup brat çıkartma paketine</a> eklendi 🎉"
+    },
+    "wh": {
+      "errs": {
+        "onlyGroup": "Bu komut gruplar için tasarlanmıştır, özel sohbetler için değil.",
+        "thisIsNotNumeric":  "<i>{{value}}</i> değeri sayısal bir ID gibi durmuyor",
+        "thisIdIsntInThisChat": "Bu grupta bu ID numarasına sahip kimse yok, lütfen bir daha kontrol et.",
+        "isLeftOrKicked": "Maalesef ki bu kullanıcı gruptaki rolünden ötürü beyaz listeye eklenemiyor. Banlanmış, atılmış, kısıtlanmış veya ayrılmış olabilir. Kullanıcının rolü: <i>{{role}}</i>",
+        "unknown": "Bu kullanıcının rolü ve izinleri bilinmeyen bir sebepten ötürü belirlenemedi. Bu ID'ye sahip bir kullanıcı hiç olmayabilir veya bot tarafında bir sorun çıkmış olabilir.",
+        "alreadyAdded": "Bu kullanıcı zaten beyaz listede ekli. Beyaz listeye eklenmiş olan tüm kullanıcıları /wh_list komutu ile listeleyebilirsiniz.",
+        "notAdded": "Bu kullanıcı beyaz listede değil veya ID'si geçersiz; lütfen tekrar kontrol edin (listeye eklenmiş herkesi /wh_list komutu ile sıralayabilirsiniz)",
+        "anErrorOccurred": "Kullanıcılar listelenirken bilinmeyen bir hata oluştu, lütfen tekrar deneyiniz veya botun sahibine bildiriniz."
+      },
+      "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> kullanıcısı yönetici olan <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından beyaz listeye eklendi.",
+      "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> kullanıcısı yönetici olan <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından grubun beyaz listesinden kaldırıldı.",
+      "loading": "⏳ Kullanıcılar Yükleniyor...",
+      "listingHeader": "<b>Bu grupta toplam {{userSize}} kullanıcı beyaz listeye alındı</b>"
     }
   }
 }

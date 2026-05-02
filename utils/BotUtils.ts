@@ -46,6 +46,32 @@ export function getMentionTag(actionUser: TelegramBot.User) {
     }
 }
 
+export function chunkMessage(
+    text: string,
+    maxLength: number = 4096
+): string[] {
+    const chunks: string[] = [];
+
+    let remaining = text;
+
+    while (remaining.length > 0) {
+        if (remaining.length <= maxLength) {
+            chunks.push(remaining);
+            break;
+        }
+
+        let splitIndex = remaining.lastIndexOf("\n", maxLength);
+        if (splitIndex === -1 || splitIndex < maxLength * 0.5) {
+            splitIndex = maxLength;
+        }
+        const part = remaining.slice(0, splitIndex);
+        chunks.push(part);
+        remaining = remaining.slice(splitIndex).trimStart();
+    }
+
+    return chunks;
+}
+
 export function isNumeric(str: string | undefined): boolean {
     if (str == undefined) return false
     return !isNaN(Number(str));
