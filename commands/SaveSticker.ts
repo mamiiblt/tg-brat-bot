@@ -11,6 +11,7 @@ import {getMentionTag, getMessageType, sendError} from "@/utils/BotUtils";
 import RDatabase from "@/utils/RDatabase";
 import TelegramBot, {Message} from "node-telegram-bot-api";
 import sharp from "sharp";
+import {isUserWhitelisted} from "@/utils/WhitelistUtils";
 
 const MAX_STICKER_PACK_SIZE = 120
 
@@ -38,8 +39,12 @@ export async function saveSticker(
     if (!isAllowedMediaType) return await sendError(msg, trs.get("cmds.save.baseErrs.allowedMedia"), actionUser, true)
 
     const chatMemberData = await getBot().getChatMember(msg.chat.id, actionUser.id)
-    const allowedRoles = ["creator", "administrator"]
-    if (!allowedRoles.includes(chatMemberData.status)) return await sendError(msg, trs.get("cmds.save.baseErrs.invalidPerms"), actionUser, true)
+
+    const isUserAllowed = await isUserWhitelisted(msg, actionUser.id)
+    if (!isUserAllowed) {
+        const allowedRoles = ["creator", "administrator"]
+        if (!allowedRoles.includes(chatMemberData.status)) return await sendError(msg, trs.get("cmds.save.baseErrs.invalidPerms"), actionUser, true)
+    }
 
     const packGeneralInfo = await isGroupStickerCreated(msg.chat.id)
 

@@ -13,7 +13,8 @@
     },
     "brat": {
       "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /b komutu ile yanıtlayın.",
-      "saveToStickerPack": "💾 Grup paketine kaydet"
+      "saveToStickerPack": "💾 Pakete Kaydet",
+      "onlyTextAllowed": "Sadece metin ifadelerini brat çıkartmasına çevirebilirsin..."
     },
     "status": {
       "title": "Bot Konteyner Durumu",
@@ -31,8 +32,9 @@
         "about": "Bot Hakkında"
       },
       "sectionLng": {
-        "pleaseSelect": "<b>Lütfen yardım / bilgi almak istediğiniz kategoriyi aşağıdan seçiniz.</b>",
-        "firstMsg": "Bir mesajı brata çevirmek isterseniz o mesajı /b komutu ile yanıtlamanız yeterlidir. Eğer oluşturulacak bratı özelleştirmek isterseniz aşağıdaki argümanları komuta ekleyebilirsiniz:",
+        "pleaseSelect": "<b>brat Çıkartma Bot'unun yardım menüsüne hoşgeldin!</b>",
+        "pleaseSelect2": "Eğer bot hakkında tıkandığınız, anlamakta zorlandığınız veya merak ettiğiniz herhangi bir şey varsa, yardım almak için aşağıdaki kategori butonlarına tıklayabilirsiniz. Hala istediğiniz cevabı alamadıysanız, bu grup üzerinden geliştiriciden veya üyelerden yardım alabilirsiniz. Bu bot boş vakitlerimde eğlencesine yaptığım bir proje olduğu için, hataları düzeltmem veya fark etmem uzun sürebilir.",
+        "firstMsg": "Bir mesajı brata çevirmek isterseniz o mesajı /b komutu ile yanıtlamanız yeterlidir. Eğer oluşturulacak çıkartmayı özelleştirmek isterseniz aşağıdaki argümanları komuta ekleyebilirsiniz:",
         "commands": {
           "rbe": "<b>rbe:</b> brat'ın hafif bulanıklık efektini kaldırır.",
           "png": "<b>png:</b> Sticker yerine PNG olarak gönderir.",
@@ -40,15 +42,27 @@
           "color": "<b>[color]:</b> Temayı değiştirir, her temanın farklı duruşları olabilir. (gr yeşil, wh beyaz, bl mavi renkleridir.)",
           "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 185)"
         },
-        "saveUsageTitle": "<b>Grup Çıkartma Paketleri</b>",
         "saveUsage": "İsterseniz bu bot ile oluşturduğunuz çıkartmaları /bs komutu ile grubunuzun çıkartma paketine ekleyebilirsiniz. Bu komuta herhangi bir argüman veya ek yazılamaz.",
-        "cmdExample": "<b>Komut Kullanım Örnekleri</b>"
+        "saveUsage2": "Bir çıkartmayı iki farklı yolla pakete kaydedebilirsiniz. Oluşturulan sticker'ın altındaki \"Save to group pack\" butonuna tıklayarak veya kaydetmek istediğiniz herhangi bir sticker'a /bs komutu ile yanıt vererek.",
+        "saveUsageTitle": "<b>Grup Çıkartma Paketleri</b>",
+        "cmdExample": "<b>Komut Kullanım Örnekleri</b>",
+        "general": "<b>Brat Çıkartmaları Oluşturma</b>",
+        "whitelistTitle": "<b>Beyaz Liste Özelliği</b>",
+        "whitelist": "Normal şartlarda sadece grup yetkililerinin çıkartmaları grup paketine kaydetmesine izin verilir. Eğer belirlediğiniz üyelerin de pakete ekleyebilmesine izin vermek isterseniz beyaz liste özeliğini kullanabilirsiniz.",
+        "wh_usages": {
+          "list": "<b>/wh_list:</b> Grupta beyaz listeye alınan herkesi listeler",
+          "add": "<b>/wh_add <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeye ekler",
+          "remove": "<b>/wh_rm <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeden çıkarır"
+        }
       },
       "lang": "İsterseniz /langb komutunu kullanarak şu an ki sohbetteki botun dilini değiştirebilirsin (sadece özel sohbet, grup ve supergroup desteklenir)",
       "about": {
         "text1": "Eğer projenin kaynak kodunu incelemek isterseniz <a href=\"https://github.com/mamiiblt/tg-brat-bot\">bu kod deposundan</a> GitHub aracılığıyla ulaşabilirsiniz. <i>(hazır bakmışken bir ⭐ vermeyi unutmayın)</i>",
-        "text2": "Bu bot <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> tarafından geliştirilmiştir."
-      }
+        "text2": "Bu bot <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> tarafından geliştirilmiştir.",
+        "devWebsite": "Geliştiricinin Sitesini Aç",
+        "sourceCode": "Kaynak Kodunu İncele"
+      },
+      "backToMenu": "Menüye Dön"
     },
     "save": {
       "baseErrs": {

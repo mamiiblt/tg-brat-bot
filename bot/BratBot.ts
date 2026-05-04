@@ -11,7 +11,7 @@ import TelegramBot, {CallbackQuery, ChatType, Message} from "node-telegram-bot-a
 import {getMainCommand, sendMessage} from "@/utils/BotUtils";
 import {sendHelpMessage} from "@/commands/Help";
 import {getChatLanguage, getChatType, getTranslator} from "@/utils/i18n";
-import {changeUserLanguage} from "@/commands/Language";
+import {changeUserLanguage} from "@/utils/LanguageUtils";
 import {saveSticker} from "@/commands/SaveSticker";
 
 export const commands: Command[] = [];
@@ -68,10 +68,7 @@ export async function setupBot() {
                 const commandName = messageArgs[0].replace("/", "")
 
                 if (command.name === getMainCommand(commandName.trim())) {
-
-
                     const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
-                    console.log(translator.userLng)
                     try {
                         await command.execute(msg, translator, messageArgs);
                     } catch (err) {
@@ -91,9 +88,12 @@ export async function setupBot() {
 
     getBot().on("callback_query", async (ctx: CallbackQuery) => {
         try {
+            const trs = getTranslator(await getChatLanguage(getChatType(ctx.message?.chat.type!!), ctx.from, ctx.message?.chat.id))
+
             if (ctx.data == "start_send_help") {
                 if (ctx.message != undefined) {
-                    await sendHelpMessage(ctx.message.chat.id, 0, ctx.message.message_thread_id)
+                    await sendHelpMessage(trs, ctx.message.chat.id, 0, ctx.message.message_thread_id)
+                    await getBot().answerCallbackQuery(ctx.id)
                 }
             }
 
@@ -101,7 +101,7 @@ export async function setupBot() {
                 if (ctx.message != undefined) {
                     const categoryId = parseInt(ctx.data?.replace("help_scat_", ""))
                     try {
-                        await sendHelpMessage(ctx.message.chat.id, categoryId, undefined, ctx.message.message_id);
+                        await sendHelpMessage(trs, ctx.message.chat.id, categoryId, undefined, ctx.message.message_id);
                     } catch (e) {
                         // do nothing, bcoz maybe user clicked to same category again.
                     }
@@ -114,8 +114,8 @@ export async function setupBot() {
 
             // BU SATIRLAR TUGBİSE GELSİN
             if (ctx.data == "save_sticker") {
-                const trs = getTranslator(await getChatLanguage(getChatType(ctx.message?.chat.type!!), ctx.from, ctx.message?.chat.id))
                 await saveSticker(trs, ctx.message!!, ctx.from)
+                await getBot().answerCallbackQuery(ctx.id)
             }
         } catch (e) {
             console.error(e);

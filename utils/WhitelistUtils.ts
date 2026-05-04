@@ -9,6 +9,7 @@ import {isNumeric} from "@/utils/BotUtils";
 import {getBot} from "@/bot/BratBot";
 import {Translator} from "@/types/Command";
 import TelegramBot, {Message} from "node-telegram-bot-api";
+import RDatabase from "@/utils/RDatabase";
 
 type CheckResult =
     | {
@@ -26,6 +27,22 @@ type CheckResult =
     user?: never;
 };
 
+export async function isUserWhitelisted(msg: Message, userId: number) {
+    try {
+        const resp = await RDatabase.query(`
+            SELECT $1 = ANY(gp_allowed_users) AS user_auth_state
+            FROM brat_bot.chat_data
+            WHERE chat_id = $2
+        `, [userId, msg.chat.id])
+
+        const authState = resp.rows[0].user_auth_state
+        return authState === true;
+    } catch (e) {
+        console.error(e)
+        return false;
+    }
+}
+
 export async function checkAndParseAR(msg: Message, trs: Translator): Promise<CheckResult> {
     if (msg.from == undefined) return { status: "FAILURE", failReason: "MSG sender is unknown" }
 
@@ -35,6 +52,7 @@ export async function checkAndParseAR(msg: Message, trs: Translator): Promise<Ch
     if (!isChatGroup) return { status: "FAILURE", failReason: trs.get("cmds.wh.errs.onlyGroup") }
 
     const chatMemberData = await getBot().getChatMember(msg.chat.id, ACTION_USER.id)
+
     const allowedRoles = ["creator", "administrator"]
     if (!allowedRoles.includes(chatMemberData.status)) return { status: "FAILURE", failReason: trs.get("cmds.save.baseErrs.invalidPerms")}
 

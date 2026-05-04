@@ -7,7 +7,7 @@
 
 import {Command} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
-import {getSupportedLanguagesText} from "@/commands/Language";
+import {getSupportedLanguagesText} from "@/utils/LanguageUtils";
 
 export default {
     name: "start",

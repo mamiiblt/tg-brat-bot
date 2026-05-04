@@ -12,6 +12,7 @@ import {getBrowser} from "@/bot/Browser";
 import path from "node:path";
 import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
 import {InlineKeyboardMarkup} from "node-telegram-bot-api";
+import {sendError} from "@/utils/BotUtils";
 
 const themeMap = {
     gr: {bg: '#7AD000', tx: '#000000'}, // green
@@ -65,8 +66,23 @@ export default {
             }
         }
 
+        const reply = msg;
+
+        if (msg.reply_to_message == undefined || msg.reply_to_message.text == undefined) return await sendError(msg, trs.get("cmds.brat.onlyTextAllowed"), msg.from!!, false)
+
+        let text: string | undefined = undefined
+
+        // this is ignored because not implemented in node-bot-telegram-api yet
+        // @ts-ignore
+        if (msg.quote != undefined && typeof msg.quote.text == "string") {
+            // @ts-ignore
+            text = msg.quote.text
+        } else {
+            text = msg.reply_to_message.text
+        }
+
         const bratConfig = {
-            text: msg.reply_to_message?.text,
+            text: text,
             theme: theme,
             fontSize: fontSize,
             removeBlurEffect: commandArgs.includes("rbe"),
@@ -80,18 +96,18 @@ export default {
         const isChatGroup = msg.chat.type === "group" || msg.chat.type === "supergroup";
         const replyMarkup: InlineKeyboardMarkup = isChatGroup ? {
             inline_keyboard: [
-                [{ text: trs.get("cmds.brat.saveToStickerPack"), callback_data: "save_sticker" }]
+                [{ text: trs.get("cmds.brat.saveToStickerPack"), callback_data: "save_sticker", style: "primary" }]
             ]
         } : { inline_keyboard: [] }
 
         if (bratConfig.rawPng) {
-            getBot().sendPhoto(msg.chat.id, buffer, {
+            await getBot().sendPhoto(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
                 reply_markup: replyMarkup
             })
         } else {
-            getBot().sendSticker(msg.chat.id, buffer, {
+            await getBot().sendSticker(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
                 reply_markup: replyMarkup
@@ -110,6 +126,7 @@ export async function generateBratImage(cfg: BratConfig) {
     const page = await browser.newPage();
 
     const isThemeWh = cfg.theme.bg == themeMap.wh.bg
+
 
     const bratPage = createBratPage({
         text: cfg.text.toString(),

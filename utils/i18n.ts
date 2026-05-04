@@ -33,16 +33,7 @@ export function getChatType(chatT: TelegramBot.ChatType): ChatType {
     return chatType
 }
 
-async function getDbSavedLocale(userId: number) {
-
-
-    return
-}
-
 export async function getChatLanguage(chatType: "public" | "private", user?: TelegramBot.User, chatId?: number): Promise<UserLanguage> {
-    console.log(`chatType: ${chatType}`)
-    console.log(`chatId: ${chatId}`)
-
     const chatSavedLocale = await RDatabase.query(
         `SELECT lang_code FROM brat_bot.chat_data WHERE chat_id = $1`,
         [chatId]
@@ -55,8 +46,6 @@ export async function getChatLanguage(chatType: "public" | "private", user?: Tel
 
     if (chatType === "private") {
         const messageSenderLocale = user!!.language_code
-        console.log(chatSavedLocale.rows.length)
-
 
         if (messageSenderLocale != undefined) return {
             code: messageSenderLocale.split("-")[0],
