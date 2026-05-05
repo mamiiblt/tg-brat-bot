@@ -14,6 +14,8 @@
     "brat": {
       "useBratAsReply": "Lütfen brata çevirmek istediğiniz mesajı /b komutu ile yanıtlayın.",
       "saveToStickerPack": "💾 Pakete Kaydet",
+      "savedAlready": "✅ Pakete Kaydedildi!",
+      "savedMessage": "Bu çıkartma pakete zaten eklendi, bir daha eklemene gerek yok.",
       "onlyTextAllowed": "Sadece metin ifadelerini brat çıkartmasına çevirebilirsin..."
     },
     "status": {

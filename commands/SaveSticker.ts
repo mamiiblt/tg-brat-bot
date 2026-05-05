@@ -95,6 +95,16 @@ export async function saveSticker(
             message_thread_id: msg.message_thread_id,
             reply_to_message_id: msg.message_id
         })
+
+        // Disable save button for ignoring spams
+        await getBot().editMessageReplyMarkup({
+            inline_keyboard: [
+                [{ text: trs.get("cmds.brat.savedAlready"), callback_data: "saved_already", style: "success" }]
+            ]
+        }, {
+            chat_id: msg.chat.id,
+            message_id: msg.message_id,
+        })
     }
 }
 

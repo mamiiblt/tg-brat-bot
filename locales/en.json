@@ -14,6 +14,8 @@
     "brat": {
       "useBratAsReply": "Use /b as a <b>reply to the message</b> or <b>quote the part of message</b> you want to quote.",
       "saveToStickerPack": "💾 Save to Pack",
+      "savedAlready": "✅ Saved to Pack!",
+      "savedMessage": "This sticker already added to package, you don't need to add again.",
       "onlyTextAllowed": "You can only convert text messages to brat stickers..."
     },
     "status": {

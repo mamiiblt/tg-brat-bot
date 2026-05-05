@@ -7,7 +7,7 @@
 
 import {Command} from "@/types/Command";
 import {loadCommands} from "@/utils/CommandHandler";
-import TelegramBot, {CallbackQuery, ChatType, Message} from "node-telegram-bot-api";
+import TelegramBot, {CallbackQuery, Message} from "node-telegram-bot-api";
 import {getMainCommand, sendMessage} from "@/utils/BotUtils";
 import {sendHelpMessage} from "@/commands/Help";
 import {getChatLanguage, getChatType, getTranslator} from "@/utils/i18n";
@@ -62,6 +62,11 @@ export async function setupBot() {
         const text = msg.text?.trim();
         if (!text) return;
 
+        if (text.trim() == "@brat_sticker_bot") {
+            const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
+            await sendHelpMessage(translator, msg.chat.id, 0, msg.message_thread_id)
+        }
+
         const messageArgs = text.split(" ")[0].split("\n")
         if (messageArgs[0].startsWith("/")) {
             for (const command of commands) {
@@ -115,7 +120,13 @@ export async function setupBot() {
             // BU SATIRLAR TUGBİSE GELSİN
             if (ctx.data == "save_sticker") {
                 await saveSticker(trs, ctx.message!!, ctx.from)
-                await getBot().answerCallbackQuery(ctx.id)
+            }
+
+            if (ctx.data == "saved_already") {
+                await getBot().answerCallbackQuery(ctx.id, {
+                    text: trs.get("cmds.brat.savedMessage"),
+                    show_alert: true
+                })
             }
         } catch (e) {
             console.error(e);
