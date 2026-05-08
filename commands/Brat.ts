@@ -13,7 +13,7 @@ import * as fs from "node:fs";
 import {getBrowser} from "@/bot/Browser";
 import path from "node:path";
 import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
-import {InlineKeyboardMarkup} from "node-telegram-bot-api";
+import TelegramBot, {InlineKeyboardMarkup} from "node-telegram-bot-api";
 import {sendError} from "@/utils/BotUtils";
 
 const themeMap = {
@@ -102,18 +102,24 @@ export default {
             ]
         } : { inline_keyboard: [] }
 
+        const fileOptions: TelegramBot.FileOptions = {
+            filename: "sticker.png",
+            contentType: "image/png"
+        }
+
         if (bratConfig.rawPng) {
             await getBot().sendPhoto(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
                 reply_markup: replyMarkup
-            })
+            }, fileOptions);
         } else {
             await getBot().sendSticker(msg.chat.id, buffer, {
                 reply_to_message_id: msg.message_id,
                 message_thread_id: msg.message_thread_id,
                 reply_markup: replyMarkup
-        })}
+            }, fileOptions)
+        }
     }
 } satisfies Command;
 
@@ -124,7 +130,7 @@ function loadFontBase64(fPath: string): string {
 }
 
 export async function generateBratImage(cfg: BratConfig) {
-    const browser = await getBrowser();
+    const browser = getBrowser();
     const page = await browser.newPage();
 
     const isThemeWh = cfg.theme.bg == themeMap.wh.bg

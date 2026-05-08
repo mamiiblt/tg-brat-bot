@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register main.ts --mode=debug",
     "build": "tsc && tsc-alias",
-    "start": "node -r tsconfig-paths/register dist/main.js --mode=prod"
+    "start": "node -r tsconfig-paths/register dist/main.js --mode=production"
   },
   "dependencies": {
     "dotenv": "^17.4.2",

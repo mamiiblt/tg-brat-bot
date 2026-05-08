@@ -1,4 +1,13 @@
 {
+  "commandUsagesApi": {
+    "start": "Botun başlatma komutu.",
+    "helpb": "Botun yardım menüsünü gösterir.",
+    "b": "Yanıt verilen mesajdan brat çıkartması oluşturur.",
+    "bs": "Yanıt verilen çıkartmayı grup paketine kaydeder.",
+    "wh_list": "Grupta beyaz listeye alınan herkes listelenir.",
+    "wh_add": "Belirtilen üyeyi beyaz listeye ekler.",
+    "wh_rm": "Belirtilen üyeyi beyaz listeden kaldırır."
+  },
   "general": {
     "error": "⚠️ <b>Komut çalıştırılırken bir hata ile karşılaşıldı.</b>",
     "supportedLngs": "Aynı zamanda bu bot güncel olarak <b>{{langs}}</b> dillerini destekliyor, eğer daha fazla dilin eklenmesine katkı sağlamak isterseniz botun <a href=\"https://github.com/mamiiblt/tg-brat-bot\">kaynak koduna</a> pull request atabilirsiniz."

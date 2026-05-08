@@ -11,18 +11,22 @@ import path from "node:path";
 import {Command} from "@/types/Command";
 import {commands} from "@/bot/BratBot";
 import {readdirSync, statSync} from "fs-extra";
+import {EventStatus} from "@/utils/GeneralUtils";
 
 export async function loadCommands() {
-    const commandsPath = path.join(__dirname, "../commands");
-    const files = getAllFiles(commandsPath);
 
-    for (const filePath of files) {
-        const commandModule = require(filePath);
-        const command: Command = commandModule.default ?? commandModule;
-        if (command && command.name) commands.push(command);
-    }
+    return new Promise<EventStatus>(async (resolve) => {
+        const commandsPath = path.join(__dirname, "../commands");
+        const files = getAllFiles(commandsPath);
 
-    console.log(`✅ Loaded ${commands.length} bot commands.`);
+        for (const filePath of files) {
+            const commandModule = require(filePath);
+            const command: Command = commandModule.default ?? commandModule;
+            if (command && command.name) commands.push(command);
+        }
+
+        resolve({ status: true, log: `Loaded ${commands.length} bot commands.` });
+    })
 }
 
 function getAllFiles(dir: string, exts: string[] = [".ts", ".js"]): string[] {

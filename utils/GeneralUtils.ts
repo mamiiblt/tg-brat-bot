@@ -7,13 +7,7 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-export default [
-    { code: "en", flag: "🇺🇸", display: "English" },
-    { code: "tr", flag: "🇹🇷", display: "Türkçe" },
-] as LanguageInfo[]
-
-export interface LanguageInfo {
-    code: string
-    flag: string
-    display: string
+export interface EventStatus {
+    status: boolean // if true is okay, if false it means failed.
+    log: string
 }

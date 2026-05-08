@@ -9,9 +9,10 @@
 
 import i18next from "i18next";
 import fsBackend from "i18next-fs-backend";
-import TelegramBot, {Message} from "node-telegram-bot-api";
+import TelegramBot from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
 import languages from "@/utils/languages";
+import {EventStatus} from "@/utils/GeneralUtils";
 
 const langCodes = languages.map(lang => lang.code)
 
@@ -57,18 +58,20 @@ export async function getChatLanguage(chatType: "public" | "private", user?: Tel
 
     return defaultLanguage
 }
-
 export async function setupI18n() {
-    i18next
-        .use(fsBackend)
-        .init({
-            fallbackLng: 'en',
-            preload: langCodes,
-            backend: {
-                loadPath: `${process.cwd()}/locales/{{lng}}.json`
-            }
-        }).then(() => console.log(`✅ i18n started successfully, ${languages.length} languages loaded.`)
-    );
+    return new Promise<EventStatus>((resolve) => {
+        i18next
+            .use(fsBackend)
+            .init({
+                fallbackLng: 'en',
+                preload: langCodes,
+                backend: {
+                    loadPath: `${process.cwd()}/locales/{{lng}}.json`
+                }
+            })
+            .then(() => resolve({ status: true,  log: `i18n started successfully, totally ${languages.length} languages loaded.` }))
+            .catch((err) => resolve({ status: false, log: `i18n failed to start: ${err.message || err}` }))
+    })
 }
 
 export function getTranslator(userLng: UserLanguage) {

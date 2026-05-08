@@ -1,4 +1,13 @@
 {
+  "commandUsagesApi": {
+    "start": "Start command of bot.",
+    "helpb": "Show support menu of bot.",
+    "b": "Creates brat sticker from replied message.",
+    "bs": "Save any created brat sticker into pack.",
+    "wh_list": "Lists all whitelisted users in active group.",
+    "wh_add": "Add specified user to whitelist.",
+    "wh_rm": "Remove specified user from whitelist."
+  },
   "general": {
     "error": "⚠️ <b>An error occurred while running command.</b>",
     "supportedLngs": "Also this bot supports <b>{{langs}}</b> languages now, if you want to add more languages you can send a pull request to <a href=\"https://github.com/mamiiblt/tg-brat-bot\">source code</a> of bot."
