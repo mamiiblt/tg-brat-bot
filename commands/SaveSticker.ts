@@ -14,6 +14,7 @@ import RDatabase from "@/utils/RDatabase";
 import TelegramBot, {Message} from "node-telegram-bot-api";
 import sharp from "sharp";
 import {isUserWhitelisted} from "@/utils/WhitelistUtils";
+import {writeLog} from "@/utils/Logger";
 
 const MAX_STICKER_PACK_SIZE = 120
 
@@ -42,7 +43,7 @@ export async function saveSticker(
 
     const chatMemberData = await getBot().getChatMember(msg.chat.id, actionUser.id)
 
-    const isUserAllowed = await isUserWhitelisted(msg, actionUser.id)
+    const isUserAllowed = await isUserWhitelisted(msg, actionUser)
     if (!isUserAllowed) {
         const allowedRoles = ["creator", "administrator"]
         if (!allowedRoles.includes(chatMemberData.status)) return await sendError(msg, trs.get("cmds.save.baseErrs.invalidPerms"), actionUser, true)
@@ -122,7 +123,11 @@ export async function addStickerIntoPack(msg: Message, packName: string): Promis
         await getBot().addStickerToSet(parseInt(process.env.TELEGRAM_BOT_ID!!), packName, stickerBuffer, "🍏", "png_sticker")
         return { status: "SUCCESS" };
     } catch (e) {
-        console.error(e)
+        await writeLog({
+            from: "SERVER",
+            type: "ERROR",
+            err: e,
+        })
         return { status: "UNKNOWN_ERROR" }
     }
 }
@@ -159,7 +164,12 @@ export async function createStickerPack(msg: Message, actionUser: TelegramBot.Us
             return { status: "USER_NOT_STARTED_BOT" };
         }
 
-        console.error(e)
+        await writeLog({
+            from: "USER",
+            type: "ERROR",
+            user: actionUser,
+            err: e
+        })
         return { status: "UNKNOWN_ERROR" }
     }
 }

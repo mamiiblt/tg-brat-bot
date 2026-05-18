@@ -11,12 +11,19 @@ import {Command, Translator} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
 import {InlineKeyboardButton, InlineKeyboardMarkup} from "node-telegram-bot-api";
 import languages from "@/utils/languages";
+import {writeLog} from "@/utils/Logger";
 
 
 export default {
     name: "helpb",
     description: "Shows help command of bot",
     async execute(msg, trs, args) {
+        await writeLog({
+            from: "USER",
+            type: "INFO",
+            message: "selam la naber",
+            user: msg.from,
+        })
         await sendHelpMessage(trs, msg.chat.id, 0, msg.message_thread_id)
     }
 
@@ -49,6 +56,7 @@ export async function sendHelpMessage(trs: Translator, chatId: number, categoryI
     let categoryNames = getCategoryNames(trs)
     let categoryContents: string[] = []
     let disable_webpage_preview = false
+
 
     const buttons: InlineKeyboardMarkup = {
         inline_keyboard: []

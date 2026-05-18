@@ -70,7 +70,7 @@ export async function setupI18n() {
                 }
             })
             .then(() => resolve({ status: true,  log: `i18n started successfully, totally ${languages.length} languages loaded.` }))
-            .catch((err) => resolve({ status: false, log: `i18n failed to start: ${err.message || err}` }))
+            .catch((err) => resolve({ status: false, log: `i18n failed to start`, err }))
     })
 }
 

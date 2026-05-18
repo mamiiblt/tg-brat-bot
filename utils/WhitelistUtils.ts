@@ -12,6 +12,7 @@ import {getBot} from "@/bot/BratBot";
 import {Translator} from "@/types/Command";
 import TelegramBot, {Message} from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
+import {writeLog} from "@/utils/Logger";
 
 type CheckResult =
     | {
@@ -29,18 +30,24 @@ type CheckResult =
     user?: never;
 };
 
-export async function isUserWhitelisted(msg: Message, userId: number) {
+export async function isUserWhitelisted(msg: Message, user: TelegramBot.User) {
     try {
         const resp = await RDatabase.query(`
             SELECT $1 = ANY(gp_allowed_users) AS user_auth_state
             FROM brat_bot.chat_data
             WHERE chat_id = $2
-        `, [userId, msg.chat.id])
+        `, [user.id, msg.chat.id])
 
         const authState = resp.rows[0].user_auth_state
+        if (authState == undefined) return false
         return authState === true;
     } catch (e) {
-        console.error(e)
+        await writeLog({
+            type: "ERROR",
+            from: "USER",
+            user,
+            err: e
+        })
         return false;
     }
 }

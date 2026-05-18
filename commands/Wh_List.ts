@@ -9,9 +9,10 @@
 
 import {Command, Translator} from "@/types/Command";
 import {getBot} from "@/bot/BratBot";
-import {chunkMessage, isNumeric, sendError} from "@/utils/BotUtils";
-import TelegramBot, {ChatMemberStatus, Message} from "node-telegram-bot-api";
+import {chunkMessage, sendError} from "@/utils/BotUtils";
+import TelegramBot, {Message} from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
+import {writeLog} from "@/utils/Logger";
 
 export default {
     name: "wh_list",
@@ -35,7 +36,7 @@ export default {
             reply_to_message_id: msg.message_id,
         })
 
-        const whUsers = await getWhitelistedUsers(msg, trs)
+        const whUsers = await getWhitelistedUsers(msg)
         if (whUsers.status == "FAILURE") return await sendError(msg, trs.get("cmds.wh.errs.anErrorOccurred"), ACTION_USER, false)
 
         const listArray: string[] = []
@@ -91,7 +92,7 @@ export async function getGroupUser(msg: Message, trs: Translator, userId: number
     }
 }
 
-export async function getWhitelistedUsers(msg: Message, trs: Translator): Promise<{
+export async function getWhitelistedUsers(msg: Message): Promise<{
     status: "SUCCESS" | "FAILURE"
     reason?: string,
     data?: number[]
@@ -109,7 +110,11 @@ export async function getWhitelistedUsers(msg: Message, trs: Translator): Promis
 
         return { status: "SUCCESS", data: data.rows[0].gp_allowed_users };
     } catch (e) {
-        console.error(e)
+        await writeLog({
+            type: "ERROR",
+            from: "SERVER",
+            err: e
+        })
         return { status: "FAILURE" };
     }
 }

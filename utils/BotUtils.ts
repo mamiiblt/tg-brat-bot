@@ -7,7 +7,7 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import TelegramBot, {InlineKeyboardMarkup, Message, ParseMode} from "node-telegram-bot-api";
+import TelegramBot, {Message, ParseMode} from "node-telegram-bot-api";
 import {getBot} from "@/bot/BratBot";
 
 export function getMainCommand(message: string) {
@@ -46,6 +46,12 @@ export function getMentionTag(actionUser: TelegramBot.User) {
     } else {
         return main
     }
+}
+
+export function getEnvironmentMode(): string {
+    const args = process.argv.slice(2);
+    const modeArg = args.find(a => a.startsWith("--mode="));
+    return modeArg?.split("=")[1] ?? "debug";
 }
 
 export function chunkMessage(
@@ -119,18 +125,4 @@ export async function sendMessage(msgOptions: {
 
     const sentMessage = await getBot().sendMessage(chatId, text, options);
     return sentMessage.message_id;
-}
-
-export async function editMessage(msgOptions: {
-    chatId: number;
-    messageId: number;
-    text: string;
-    msg_reply_markup?: InlineKeyboardMarkup;
-}) {
-    await getBot().editMessageText(msgOptions.text, {
-        chat_id: msgOptions.chatId,
-        message_id: msgOptions.messageId,
-        parse_mode: "HTML",
-        reply_markup: msgOptions.msg_reply_markup,
-    });
 }

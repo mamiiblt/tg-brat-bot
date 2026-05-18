@@ -10,4 +10,5 @@
 export interface EventStatus {
     status: boolean // if true is okay, if false it means failed.
     log: string
+    err?: unknown
 }

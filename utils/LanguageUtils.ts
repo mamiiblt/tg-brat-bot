@@ -12,6 +12,7 @@ import languages from "@/utils/languages";
 import {CallbackQuery} from "node-telegram-bot-api";
 import {getBot} from "@/bot/BratBot";
 import RDatabase from "@/utils/RDatabase";
+import {writeLog} from "@/utils/Logger";
 
 export function getSupportedLanguagesText(trs: Translator) {
     const languageDisplays: string[] = []
@@ -41,7 +42,12 @@ export async function changeUserLanguage(ctx: CallbackQuery) {
 
         await getBot().answerCallbackQuery(ctx.id);
     } catch (e) {
-        console.error("changeUserLanguage Hatası:", e);
+        await writeLog({
+            from: "USER",
+            type: "ERROR",
+            user: ctx.from,
+            err: e
+        })
     }
 }
 

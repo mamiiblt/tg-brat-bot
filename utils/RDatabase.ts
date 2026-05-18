@@ -10,13 +10,12 @@
 import dotenv from "dotenv";
 import {Pool} from "pg";
 import {EventStatus} from "@/utils/GeneralUtils";
+import {getEnvironmentMode} from "@/utils/BotUtils";
 
 dotenv.config();
 
-const args = process.argv.slice(2);
-const modeArg = args.find(a => a.startsWith("--mode="));
-const mode = modeArg?.split("=")[1] ?? "dev";
-const hostname = mode == "debug" ? process.env.DB_HOSTNAME_PUBLIC : process.env.DB_HOSTNAME_INTERNAL
+const envMode = getEnvironmentMode();
+const hostname = envMode == "debug" ? process.env.DB_HOSTNAME_PUBLIC : process.env.DB_HOSTNAME_INTERNAL
 
 const client = new Pool({
     user: process.env.DB_USERNAME,
@@ -26,12 +25,23 @@ const client = new Pool({
     database: process.env.DB_DATABASE
 })
 
-export async function connectRemoteDb() {
-    return new Promise<EventStatus>((resolve) => {
-        client.connect()
-            .then(() => resolve({ status: true, log: `Connected to database (${mode}) server successfully. ${mode == "debug" ? `(Server IP: ${hostname})` : ""}`}))
-            .catch(() => resolve({ status: false, log: "An error occurred while connecting to database." }))
-    })
+export async function connectRemoteDb(): Promise<EventStatus> {
+    try {
+        await client.connect();
+
+        return {
+            status: true,
+            log: `Connected to database (${envMode == "production" ? "internal" : "external"}) server successfully. ${
+                envMode == "debug" ? `(Server IP: ${hostname})` : ""
+            }`,
+        };
+    } catch (err) {
+        return {
+            status: false,
+            log: "An error occurred while connecting to database.",
+            err: err,
+        };
+    }
 }
 
 export default client
