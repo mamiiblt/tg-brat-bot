@@ -1,0 +1,112 @@
+{
+  "commandUsagesApi": {
+    "start": "Startbefehl des Bots.",
+    "helpb": "Zeigt das Hilfemenü des Bots an.",
+    "b": "Erstellt einen Brat-Sticker aus der antworteten Nachricht.",
+    "bs": "Speichert den ausgewählten Sticker im Gruppen-Stickerpaket.",
+    "wh_list": "Listet alle Mitglieder auf, die auf die Whitelist gesetzt wurden.",
+    "wh_add": "Fügt das angegebene Mitglied zur Whitelist hinzu.",
+    "wh_rm": "Entfernt das angegebene Mitglied aus der Whitelist."
+  },
+  "general": {
+    "error": "⚠️ <b>Beim Ausführen des Befehls ist ein Fehler aufgetreten.</b>",
+    "supportedLngs": "Dieser Bot unterstützt derzeit <b>{{langs}}</b>. Wenn du weitere Sprachen hinzufügen möchtest, kannst du einen Pull Request im <a href=\"https://github.com/mamiiblt/tg-brat-bot\">Quellcode</a> einreichen."
+  },
+  "cmds": {
+    "start": {
+      "t1": "Willkommen beim <b>Brat Sticker Bot</b>!",
+      "t2": "Du kannst unten auf den <b>Button klicken</b> oder den /helpb Befehl verwenden, um zu erfahren, wie der Bot funktioniert.",
+      "btn": "Hier klicken, um Hilfe zu sehen!",
+      "giveAstar": "Gib einen ⭐ auf GitHub",
+      "supportGroup": "Support-Gruppe beitreten"
+    },
+    "brat": {
+      "useBratAsReply": "Bitte antworte mit dem Befehl /b auf die Nachricht, die du in einen Brat-Sticker umwandeln möchtest.",
+      "saveToStickerPack": "💾 Zum Paket speichern",
+      "savedAlready": "✅ Bereits im Paket gespeichert!",
+      "savedMessage": "Dieser Sticker wurde bereits dem Paket hinzugefügt, du musst ihn nicht erneut hinzufügen.",
+      "onlyTextAllowed": "Du kannst nur Textnachrichten in Brat-Sticker umwandeln..."
+    },
+    "status": {
+      "title": "Bot-Container-Status",
+      "usageTmpl": "{{name}} Nutzung",
+      "cpuLoad": "CPU-Auslastung",
+      "uptimeSys": "Systemlaufzeit",
+      "uptimeBot": "Bot-Laufzeit",
+      "systemTime": "Systemzeit"
+    },
+    "help": {
+      "categories": {
+        "default": "Standard",
+        "usage": "Bot-Nutzung",
+        "language": "Spracheinstellungen",
+        "about": "Über den Bot"
+      },
+      "sectionLng": {
+        "pleaseSelect": "<b>Willkommen im Hilfe-Menü des Brat-Sticker-Bots!</b>",
+        "pleaseSelect2": "Wenn du Fragen hast, etwas nicht verstehst oder Hilfe benötigst, kannst du unten auf die Kategorie-Buttons klicken. Falls du keine Antwort findest, kannst du im Support-Chat Hilfe vom Entwickler oder anderen Nutzern erhalten. Dieser Bot ist ein Freizeitprojekt, daher können Fehler oder Verzögerungen bei Korrekturen auftreten.",
+        "firstMsg": "Um eine Nachricht in einen Brat-Sticker umzuwandeln, antworte einfach mit /b auf die Nachricht. Du kannst den Sticker mit folgenden Parametern anpassen:",
+        "commands": {
+          "rbe": "<b>rbe:</b> entfernt den leichten Unschärfeeffekt.",
+          "png": "<b>png:</b> sendet den Sticker als PNG statt als Sticker.",
+          "scr": "<b>scr:</b> fügt einen Kritzeleffekt hinzu.",
+          "color": "<b>[color]:</b> ändert das Theme (gr Grün, wh Weiß, bl Blau).",
+          "fs": "<b>fs-[number]:</b> ändert die Schriftgröße (Standard: 185)."
+        },
+        "saveUsage": "Du kannst erstellte Sticker mit dem Befehl /bs zum Gruppen-Stickerpaket hinzufügen.",
+        "saveUsage2": "Du kannst Sticker auf zwei Arten speichern: über den Button „Zum Gruppenpaket speichern“ oder indem du mit /bs auf einen Sticker antwortest.",
+        "saveUsageTitle": "<b>Gruppen-Stickerpakete</b>",
+        "cmdExample": "<b>Befehlsbeispiele</b>",
+        "general": "<b>Erstellung von Brat-Stickern</b>",
+        "whitelistTitle": "<b>Whitelist-Funktion</b>",
+        "whitelist": "Standardmäßig dürfen nur Gruppenadministratoren Sticker zum Paket hinzufügen. Mit der Whitelist kannst du auch bestimmten Mitgliedern diese Berechtigung geben.",
+        "wh_usages": {
+          "list": "<b>/wh_list:</b> listet alle Mitglieder der Whitelist auf",
+          "add": "<b>/wh_add <i>(user_id):</i></b> fügt den Benutzer zur Whitelist hinzu",
+          "remove": "<b>/wh_rm <i>(user_id):</i></b> entfernt den Benutzer aus der Whitelist"
+        }
+      },
+      "lang": "Mit dem Befehl /langb kannst du die Sprache im aktuellen Chat ändern (nur Privat-, Gruppen- und Supergruppen-Chats werden unterstützt).",
+      "about": {
+        "text1": "Den Quellcode findest du im <a href=\"https://github.com/mamiiblt/tg-brat-bot\">GitHub-Repository</a> (⭐ nicht vergessen 😊).",
+        "text2": "Dieser Bot wurde von <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a> entwickelt.",
+        "devWebsite": "Entwickler-Website öffnen",
+        "sourceCode": "Quellcode ansehen"
+      },
+      "backToMenu": "Zurück zum Menü"
+    },
+    "save": {
+      "baseErrs": {
+        "onlyGroup": "Diese Funktion ist nur für Gruppen und Supergruppen gedacht.",
+        "replyRequired": "Du musst auf einen Sticker oder ein Bild antworten, um es zum Gruppenpaket hinzuzufügen.",
+        "allowedMedia": "Nur Sticker und Fotos können gespeichert werden.",
+        "idIsUnknown": "Deine Benutzer-ID ist unbekannt. Bitte starte den Bot im Privatchat mit /start.",
+        "invalidPerms": "Du hast keine Berechtigung für diese Funktion 😭",
+        "maxSizeReached": "Das Gruppen-Stickerpaket hat die maximale Anzahl erreicht ({{maxSize}}). Ein neues Paket wird erstellt."
+      },
+      "errs": {
+        "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Animierte oder Video-Sticker können nicht hinzugefügt werden.",
+        "UNKNOWN_ERROR": "⚠️ Ein unbekannter Fehler ist aufgetreten. Bitte versuche es erneut oder kontaktiere den Entwickler.",
+        "USER_NOT_STARTED_BOT": "⚠️ Telegram muss dich zuerst erkennen. Bitte starte @brat_sticker_bot im Privatchat und versuche es erneut."
+      },
+      "SUCCESS_CREATE": "Für diesen Chat <b>({{chatName}})</b> wurde von <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> ein neues Gruppen-Stickerpaket erstellt. Du kannst weitere Sticker mit /bs hinzufügen: <a href=\"{{packUrl}}\">Paket öffnen</a>.",
+      "SUCCESS_ADD": "Der Sticker wurde erfolgreich von <a href=\"{{adderUserId}}\"><b>{{adderName}}</b></a> zum Gruppen-Brat-Stickerpaket hinzugefügt 🎉"
+    },
+    "wh": {
+      "errs": {
+        "onlyGroup": "Dieser Befehl ist nur für Gruppen gedacht, nicht für private Chats.",
+        "thisIsNotNumeric": "<i>{{value}}</i> scheint keine gültige numerische ID zu sein.",
+        "thisIdIsntInThisChat": "Diese ID existiert in diesem Chat nicht.",
+        "isLeftOrKicked": "Dieser Benutzer kann nicht auf die Whitelist gesetzt werden (gebannt, entfernt oder verlassen). Rolle: <i>{{role}}</i>",
+        "unknown": "Die Rolle dieses Benutzers konnte nicht bestimmt werden.",
+        "alreadyAdded": "Dieser Benutzer ist bereits auf der Whitelist.",
+        "notAdded": "Dieser Benutzer ist nicht auf der Whitelist.",
+        "anErrorOccurred": "Beim Laden der Benutzer ist ein Fehler aufgetreten."
+      },
+      "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> wurde von <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> zur Whitelist hinzugefügt.",
+      "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> wurde von <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> aus der Whitelist entfernt.",
+      "loading": "⏳ Benutzer werden geladen...",
+      "listingHeader": "<b>In diesem Chat sind insgesamt {{userSize}} Benutzer auf der Whitelist</b>"
+    }
+  }
+}
