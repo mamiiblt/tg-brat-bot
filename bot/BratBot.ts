@@ -15,7 +15,8 @@ import {getChatLanguage, getChatType, getTranslator} from "@/utils/i18n";
 import {changeUserLanguage} from "@/utils/LanguageUtils";
 import {saveSticker} from "@/commands/SaveSticker";
 import {EventStatus} from "@/utils/GeneralUtils";
-import {enableLogSaving, writeLog} from "@/utils/Logger";
+import {enableLogSaving, escapeHtml, writeLog} from "@/utils/Logger";
+import RDatabase from "@/utils/RDatabase";
 
 export const commands: Command[] = [];
 let bot: TelegramBot | null = null;
@@ -57,41 +58,55 @@ export function getBot(): TelegramBot {
     return bot;
 }
 
+
+
 const handlers = {
     onMessage:  async (msg: Message) => {
         const text = msg.text?.trim();
-        if (!text) return;
+        if (!text || msg.from == undefined) return;
+        const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
+        await checkUserIsUsedBot(msg.from, msg)
 
-        if (text.trim() == "@brat_sticker_bot") {
-            const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
-            await sendHelpMessage(translator, msg.chat.id, 0, msg.message_thread_id)
-        }
+        if (text.trim() == "@brat_sticker_bot") await sendHelpMessage(translator, msg.chat.id, 0, msg.message_thread_id)
 
         const messageArgs = text.split(" ")[0].split("\n")
-        if (messageArgs[0].startsWith("/")) {
-            for (const command of commands) {
-                const commandName = messageArgs[0].replace("/", "")
 
-                if (command.name === getMainCommand(commandName.trim())) {
-                    const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
-                    try {
-                        await command.execute(msg, translator, messageArgs);
-                    } catch (err) {
-                        await writeLog({
-                            type: "ERROR",
-                            from: "USER",
-                            user: msg.from,
-                            err: err
-                        })
-                        await sendMessage({
-                            chatId: msg.chat.id,
-                            msg: msg,
-                            text: translator.get("general.error"),
-                            replyToMessage: true,
-                            msg_parse_mode: "HTML"
-                        })
-                    }
-                }
+        const command = commands.find(
+            c => c.name === getMainCommand(messageArgs[0].replace("/", "").trim())
+        );
+
+        if (command) {
+            try {
+                await command.execute(msg, translator, messageArgs);
+            } catch (err) {
+                await writeLog({
+                    type: "ERROR",
+                    from: "USER",
+                    user: msg.from,
+                    err: err
+                })
+                await sendMessage({
+                    chatId: msg.chat.id,
+                    msg: msg,
+                    text: translator.get("general.error"),
+                    replyToMessage: true,
+                    msg_parse_mode: "HTML"
+                })
+            }
+        } else {
+            if (msg.chat.type == "private" && msg.text != undefined) {
+                await writeLog({
+                    from: "USER",
+                    type: "INFO",
+                    user: msg.from,
+                    message: [
+                        "User is sent a recognized message in PM chat.",
+                        escapeHtml(msg.text)
+                    ].join("\n"),
+                    externalFields: [
+                        { key: "message_id", value: msg.message_id.toString() },
+                    ]
+                })
             }
         }
     },
@@ -140,6 +155,33 @@ const handlers = {
                 err: e
             })
         }
+    }
+}
+
+async function checkUserIsUsedBot(user: TelegramBot.User, msg: Message) {
+    const result = await RDatabase.query(`
+        INSERT INTO brat_bot.users_list (user_id)
+        VALUES ($1)
+        ON CONFLICT (user_id) DO NOTHING 
+        RETURNING user_id
+    `, [user.id])
+
+    if (result.rows.length > 0) {
+        const results = await RDatabase.query(`SELECT COUNT(*) FROM brat_bot.users_list`)
+
+        await writeLog({
+            from: "USER",
+            type: "INFO",
+            user: user,
+            message: [
+                `A new user is started to use bot (${user.username != undefined ? `@${user.username} ` : ""}[${user.id}])`,
+                `Now totally ${results.rows[0].count} user is used that bot :)`
+            ].join("\n"),
+            externalFields: [
+                { key: "chat_id", value: msg.chat.id.toString() },
+                { key: "message_id", value: msg.message_id.toString() },
+            ]
+        })
     }
 }
 

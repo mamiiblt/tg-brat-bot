@@ -17,7 +17,7 @@ import {writeLog} from "@/utils/Logger";
 export default {
     name: "helpb",
     description: "Shows help command of bot",
-    async execute(msg, trs, args) {
+    async execute(msg, trs) {
         await writeLog({
             from: "USER",
             type: "INFO",

@@ -14,7 +14,7 @@ import {getSupportedLanguagesText} from "@/utils/LanguageUtils";
 export default {
     name: "start",
     description: "Start command of bot.",
-    async execute(msg, trs, args) {
+    async execute(msg, trs) {
         await getBot().sendPhoto(msg.chat.id, "https://cdn.mamii.dev/utils/telegram/brat_bot_banner.png", {
             parse_mode: "HTML",
             message_thread_id: msg.message_thread_id,

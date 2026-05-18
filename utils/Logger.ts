@@ -18,6 +18,7 @@ export interface Log {
     from: logFrom
     type: logType
     timestamp: Date
+    externalFields?: { key: string; value: string }[]
     message?: string
     stack?: string
     user?: TelegramBot.User
@@ -34,6 +35,7 @@ export async function writeLog(
     data: {
         from: logFrom,
         type: logType,
+        externalFields?: { key: string; value: string }[],
         message?: string,
         err?: unknown,
         user?: TelegramBot.User,
@@ -48,6 +50,7 @@ export async function writeLog(
         message: data.message,
         timestamp: new Date(),
         stack: errorStack,
+        externalFields: data.externalFields,
         user: data.user ?? undefined,
     };
 
@@ -127,9 +130,9 @@ function formatLog_Tg(log: Log): string {
             }` : log.from
         }
     ];
+    const result = fields.concat(log.externalFields ?? []);
 
-    let message =
-        fields.map(f => `<b>${f.key}</b>: ${escapeHtml(f.value)}`).join("\n");
+    let message= result.map(f => `<b>${f.key}</b>: ${escapeHtml(f.value)}`).join("\n");
 
     if (message != undefined) {
         message += `\n\n${escapeHtml(log.message!!)}`;
@@ -142,7 +145,7 @@ function formatLog_Tg(log: Log): string {
     return message;
 }
 
-function escapeHtml(text: string) {
+export function escapeHtml(text: string) {
     return text
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")

@@ -17,7 +17,7 @@ import {writeLog} from "@/utils/Logger";
 export default {
     name: "wh_list",
     description: "Lists whitelisted users in group",
-    async execute(msg, trs, args) {
+    async execute(msg, trs) {
         if (msg.from == undefined) return
         if (msg.text == undefined) return
 

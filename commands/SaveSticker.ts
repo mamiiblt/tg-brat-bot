@@ -21,7 +21,7 @@ const MAX_STICKER_PACK_SIZE = 120
 export default {
     name: "bs",
     description: "Save sticker into group / personal pack. (Admin only)",
-    async execute(msg, trs, args) {
+    async execute(msg, trs) {
         if (msg.reply_to_message == undefined) return await sendError(msg, trs.get("cmds.save.baseErrs.replyRequired"), msg.from!!, false)
         if (msg.from?.id == undefined) return await sendError(msg, trs.get("cmds.save.baseErrs.idIsUnknown"), msg.from!!, false)
 
@@ -81,7 +81,7 @@ export async function saveSticker(
         })
     } else {
         const addData = await addStickerIntoPack(msg, packGeneralInfo.packName!!)
-        let message: string | undefined = undefined
+        let message: string | undefined
 
         if (addData.status == "SUCCESS") {
             message = trs.get("cmds.save.SUCCESS_ADD", {
