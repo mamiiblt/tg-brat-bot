@@ -7,15 +7,15 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command} from "@/types/Command";
-import TelegramBot, {CallbackQuery, Message} from "node-telegram-bot-api";
-import {getMainCommand, sendMessage} from "@/utils/BotUtils";
-import {sendHelpMessage} from "@/commands/Help";
-import {getChatLanguage, getChatType, getTranslator} from "@/utils/i18n";
-import {changeUserLanguage} from "@/utils/LanguageUtils";
-import {saveSticker} from "@/commands/SaveSticker";
-import {EventStatus} from "@/utils/GeneralUtils";
-import {enableLogSaving, escapeHtml, writeLog} from "@/utils/Logger";
+import { Command } from "@/types/Command";
+import TelegramBot, { CallbackQuery, Message } from "node-telegram-bot-api";
+import { getMainCommand, sendMessage } from "@/utils/BotUtils";
+import { sendHelpMessage } from "@/commands/Help";
+import { getChatLanguage, getChatType, getTranslator } from "@/utils/i18n";
+import { changeUserLanguage } from "@/utils/LanguageUtils";
+import { saveSticker } from "@/commands/SaveSticker";
+import { EventStatus } from "@/utils/GeneralUtils";
+import { enableLogSaving, escapeHtml, writeLog } from "@/utils/Logger";
 import RDatabase from "@/utils/RDatabase";
 
 export const commands: Command[] = [];
@@ -25,7 +25,7 @@ export async function initBot(): Promise<EventStatus> {
     return new Promise<EventStatus>(resolve => {
         const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
         if (telegramBotToken == undefined) {
-            resolve({ status: false, log: "TELEGRAM_BOT_TOKEN isn't set in environment."})
+            resolve({ status: false, log: "TELEGRAM_BOT_TOKEN isn't set in environment." })
         }
 
         bot = new TelegramBot(telegramBotToken!!, {
@@ -46,7 +46,7 @@ export async function initBot(): Promise<EventStatus> {
 
 
         enableLogSaving().then(() => {
-            resolve({ status: true, log: "brat Bot initialized successfully."})
+            resolve({ status: true, log: "brat Bot initialized successfully." })
         })
     })
 }
@@ -61,7 +61,7 @@ export function getBot(): TelegramBot {
 
 
 const handlers = {
-    onMessage:  async (msg: Message) => {
+    onMessage: async (msg: Message) => {
         const text = msg.text?.trim();
         if (!text || msg.from == undefined) return;
         const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))

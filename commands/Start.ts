@@ -7,20 +7,20 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
-import {getSupportedLanguagesText} from "@/utils/LanguageUtils";
+import { Command } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
+import { getSupportedLanguagesText } from "@/utils/LanguageUtils";
 
 export default {
     name: "start",
     description: "Start command of bot.",
     async execute(msg, trs) {
-        await getBot().sendPhoto(msg.chat.id, "https://cdn.mamii.dev/utils/telegram/brat_bot_banner.png", {
+        await getBot().sendPhoto(msg.chat.id, "https://cdn.mamii.dev/utils/telegram/p_bs_bot.png", {
             parse_mode: "HTML",
             message_thread_id: msg.message_thread_id,
             caption: [
-                `${trs.get("cmds.start.t1" )}\n`,
-                `${trs.get("cmds.start.t2" )}\n`,
+                `${trs.get("cmds.start.t1")}\n`,
+                `${trs.get("cmds.start.t2")}\n`,
                 getSupportedLanguagesText(trs)
             ].join("\n"),
             reply_markup: {

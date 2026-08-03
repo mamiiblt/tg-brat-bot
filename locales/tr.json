@@ -40,7 +40,12 @@
         "default": "Varsayılan",
         "usage": "Bot Kullanımı",
         "language": "Dil Ayarları",
-        "about": "Bot Hakkında"
+        "about": "Bot Hakkında",
+        "aboutTranslators": "Çevirmenler Hakkında"
+      },
+      "translators": {
+        "header": "<b>Çevirmenler</b>",
+        "text": "Bu bot aşağıdaki kişiler tarafından çevrilmiştir. Eğer bu botun çevirisine katkıda bulunmak isterseniz <a href=\"https://github.com/mamiiblt/tg-brat-bot\" target=\"_blank\">GitHub</a> repository'sine pull request gönderebilirsiniz."
       },
       "sectionLng": {
         "pleaseSelect": "<b>brat Çıkartma Bot'unun yardım menüsüne hoşgeldin!</b>",
@@ -95,7 +100,7 @@
     "wh": {
       "errs": {
         "onlyGroup": "Bu komut gruplar için tasarlanmıştır, özel sohbetler için değil.",
-        "thisIsNotNumeric":  "<i>{{value}}</i> değeri sayısal bir ID gibi durmuyor",
+        "thisIsNotNumeric": "<i>{{value}}</i> değeri sayısal bir ID gibi durmuyor",
         "thisIdIsntInThisChat": "Bu grupta bu ID numarasına sahip kimse yok, lütfen bir daha kontrol et.",
         "isLeftOrKicked": "Maalesef ki bu kullanıcı gruptaki rolünden ötürü beyaz listeye eklenemiyor. Banlanmış, atılmış, kısıtlanmış veya ayrılmış olabilir. Kullanıcının rolü: <i>{{role}}</i>",
         "unknown": "Bu kullanıcının rolü ve izinleri bilinmeyen bir sebepten ötürü belirlenemedi. Bu ID'ye sahip bir kullanıcı hiç olmayabilir veya bot tarafında bir sorun çıkmış olabilir.",

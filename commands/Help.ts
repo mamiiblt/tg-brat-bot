@@ -7,11 +7,11 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command, Translator} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
-import {InlineKeyboardButton, InlineKeyboardMarkup} from "node-telegram-bot-api";
+import { Command, Translator } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
+import { InlineKeyboardButton, InlineKeyboardMarkup } from "node-telegram-bot-api";
 import languages from "@/utils/languages";
-import {writeLog} from "@/utils/Logger";
+import { writeLog } from "@/utils/Logger";
 
 
 export default {
@@ -48,7 +48,8 @@ export function getCategoryNames(trs: Translator) {
         trs.get("cmds.help.categories.default"),
         trs.get("cmds.help.categories.usage"),
         trs.get("cmds.help.categories.language"),
-        trs.get("cmds.help.categories.about")
+        trs.get("cmds.help.categories.about"),
+        trs.get("cmds.help.categories.aboutTranslators"),
     ]
 }
 
@@ -56,7 +57,6 @@ export async function sendHelpMessage(trs: Translator, chatId: number, categoryI
     let categoryNames = getCategoryNames(trs)
     let categoryContents: string[] = []
     let disable_webpage_preview = false
-
 
     const buttons: InlineKeyboardMarkup = {
         inline_keyboard: []
@@ -80,19 +80,25 @@ export async function sendHelpMessage(trs: Translator, chatId: number, categoryI
             break;
         case 2:
             const languagePage = pageContents.language(trs)
-            langButtons.forEach((button) => {buttons.inline_keyboard.push(button)})
+            langButtons.forEach((button) => { buttons.inline_keyboard.push(button) })
             disable_webpage_preview = true
             categoryContents = languagePage.message
             break;
         case 3:
             const aboutPage = pageContents.aboutBot(trs)
-            aboutPage.buttons.forEach((button) => {buttons.inline_keyboard.push(button)})
+            aboutPage.buttons.forEach((button) => { buttons.inline_keyboard.push(button) })
             disable_webpage_preview = true
             categoryContents = aboutPage.message
             break;
+        case 4:
+            const translatorsPage = pageContents.aboutTranslators(trs)
+            disable_webpage_preview = true
+            categoryContents = translatorsPage.message
+            break;
+
     }
 
-    const usageCategoryIds = [1, 4, 5]
+    const usageCategoryIds = [1, 5, 6]
     if (usageCategoryIds.includes(categoryId)) {
         const botUsagePage = pageContents.botUsage(trs, categoryId, usageCategoryIds)
         categoryContents = botUsagePage.message
@@ -124,6 +130,19 @@ export async function sendHelpMessage(trs: Translator, chatId: number, categoryI
 }
 
 const pageContents = {
+    aboutTranslators: (trs: Translator): {
+        message: string[],
+    } => {
+        return {
+            message: [
+                `${trs.get("cmds.help.translators.header")}\n`,
+                `${trs.get("cmds.help.translators.text")}\n`,
+                "🇹🇷 Türkçe • @mamiiblt",
+                `🇩🇪 Deutsch • <a href="tg://user?id=5822857302">Ahmet</a>`,
+                `🇫🇷 Français • <a href="tg://user?id=1426897194">pelin</a>`
+            ]
+        }
+    },
     aboutBot: (trs: Translator): {
         message: string[],
         buttons: InlineKeyboardButton[][]
@@ -162,14 +181,14 @@ const pageContents = {
                     lines.join("\n"),
                 ]
                 break;
-            case 4:
+            case 5:
                 message = [
                     `${trs.get("cmds.help.sectionLng.saveUsageTitle")}\n`,
                     `${trs.get("cmds.help.sectionLng.saveUsage")}\n`,
                     `${trs.get("cmds.help.sectionLng.saveUsage2")}`,
                 ]
                 break;
-            case 5:
+            case 6:
                 const keysWh = ["list", "add", "remove"]
                 const linesWh: string[] = []
                 keysWh.forEach((key) => linesWh.push(`• ${trs.get(`cmds.help.sectionLng.wh_usages.${key}`)}`))

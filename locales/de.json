@@ -40,7 +40,12 @@
         "default": "Standard",
         "usage": "Bot-Nutzung",
         "language": "Spracheinstellungen",
-        "about": "Über den Bot"
+        "about": "Über den Bot",
+        "aboutTranslators": "Über die Übersetzer"
+      },
+      "translators": {
+        "header": "<b>Übersetzer</b>",
+        "text": "Dieser Bot wurde von den folgenden Personen übersetzt. Wenn du zur Übersetzung dieses Bots beitragen möchtest, kannst du einen Pull Request im <a href=\"https://github.com/mamiiblt/tg-brat-bot\" target=\"_blank\">GitHub</a> Repository einreichen."
       },
       "sectionLng": {
         "pleaseSelect": "<b>Willkommen im Hilfe-Menü des Brat-Sticker-Bots!</b>",
