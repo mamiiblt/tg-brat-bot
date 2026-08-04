@@ -1,0 +1,117 @@
+{
+  "commandUsagesApi": {
+    "start": "Commande de démarrage du bot.",
+    "helpb": "Affiche le menu d'aide du bot.",
+    "b": "Crée un sticker brat à partir du message auquel vous répondez.",
+    "bs": "Enregistre le sticker auquel vous répondez dans le pack du groupe.",
+    "wh_list": "Affiche la liste de toutes les personnes ajoutées à la liste blanche du groupe.",
+    "wh_add": "Ajoute le membre spécifié à la liste blanche.",
+    "wh_rm": "Retire le membre spécifié de la liste blanche."
+  },
+  "general": {
+    "error": "⚠️ <b>Une erreur est survenue lors de l'exécution de la commande.</b>",
+    "supportedLngs": "Actuellement, ce bot prend en charge les langues suivantes : <b>{{langs}}</b>. Si vous souhaitez contribuer à l'ajout de nouvelles langues, vous pouvez envoyer une pull request sur le <a href=\"https://github.com/mamiiblt/tg-brat-bot\">code source</a> du bot."
+  },
+  "cmds": {
+    "start": {
+      "t1": "Bienvenue sur le <b>bot de stickers brat</b> !",
+      "t2": "Vous pouvez obtenir des informations sur <b>l'utilisation du bot</b> en cliquant sur le <b>bouton ci-dessous</b> ou en utilisant la commande /helpb.",
+      "btn": "Cliquez ici pour voir l'aide !",
+      "giveAstar": "Donnez une ⭐ sur GitHub",
+      "supportGroup": "Rejoindre le groupe de support"
+    },
+    "brat": {
+      "useBratAsReply": "Veuillez répondre au message que vous souhaitez transformer en brat avec la commande /b.",
+      "saveToStickerPack": "💾 Enregistrer dans le pack",
+      "savedAlready": "✅ Enregistré dans le pack !",
+      "savedMessage": "Ce sticker est déjà ajouté au pack, inutile de l'ajouter à nouveau.",
+      "onlyTextAllowed": "Vous ne pouvez transformer que des expressions textuelles en sticker brat..."
+    },
+    "status": {
+      "title": "Statut du conteneur du bot",
+      "usageTmpl": "Utilisation de {{name}}",
+      "cpuLoad": "Charge processeur (CPU)",
+      "uptimeSys": "Temps d'activité (Système)",
+      "uptimeBot": "Temps d'activité (Bot)",
+      "systemTime": "Heure du système"
+    },
+    "help": {
+      "categories": {
+        "default": "Par défaut",
+        "usage": "Utilisation du bot",
+        "language": "Paramètres de langue",
+        "about": "À propos du bot",
+        "aboutTranslators": "À propos des traducteurs"
+      },
+      "translators": {
+        "header": "<b>Traducteurs</b>",
+        "text": "Ce bot a été traduit par les personnes suivantes. Si vous souhaitez contribuer à la traduction de ce bot, vous pouvez envoyer une pull request sur le dépôt <a href=\"https://github.com/mamiiblt/tg-brat-bot\" target=\"_blank\">GitHub</a>."
+      },
+      "sectionLng": {
+        "pleaseSelect": "<b>Bienvenue dans le menu d'aide du bot de stickers brat !</b>",
+        "pleaseSelect2": "Si vous êtes bloqué, si vous avez des difficultés à comprendre ou si vous vous posez des questions sur le bot, vous pouvez cliquer sur les boutons de catégorie ci-dessous pour obtenir de l'aide. Si vous n'avez toujours pas obtenu la réponse souhaitée, vous pouvez obtenir de l'aide de la part du développeur ou des membres via ce groupe. Comme ce bot est un projet réalisé pour le plaisir pendant mon temps libre, la correction ou la détection des erreurs peut prendre du temps.",
+        "firstMsg": "Si vous souhaitez transformer un message en brat, il vous suffit de répondre à ce message avec la commande /b. Si vous souhaitez personnaliser le sticker à créer, vous pouvez ajouter les arguments suivants à la commande :",
+        "commands": {
+          "rbe": "<b>rbe :</b> Supprime le léger effet de flou de brat.",
+          "png": "<b>png :</b> Envoie sous forme de PNG au lieu d'un sticker.",
+          "scr": "<b>scr :</b> Ajoute un effet de gribouillage",
+          "color": "<b>[color] :</b> Change le thème, chaque thème peut avoir un rendu différent. (gr vert, wh blanc, bl bleu.)",
+          "fs": "<b>fs-[number] :</b> Modifie la taille de la police. (par défaut : 185)"
+        },
+        "saveUsage": "Si vous le souhaitez, vous pouvez ajouter les stickers créés avec ce bot au pack de stickers de votre groupe en utilisant la commande /bs. Aucun argument ni texte supplémentaire ne peut être ajouté à cette commande.",
+        "saveUsage2": "Vous pouvez enregistrer un sticker dans le pack de deux manières différentes : en cliquant sur le bouton « Save to group pack » sous le sticker créé, ou en répondant à n'importe quel sticker que vous souhaitez enregistrer avec la commande /bs.",
+        "saveUsageTitle": "<b>Packs de stickers du groupe</b>",
+        "cmdExample": "<b>Exemples d'utilisation des commandes</b>",
+        "general": "<b>Création de stickers Brat</b>",
+        "whitelistTitle": "<b>Fonctionnalité de liste blanche</b>",
+        "whitelist": "Sous des conditions normales, seuls les administrateurs du groupe sont autorisés à enregistrer des stickers dans le pack du groupe. Si vous souhaitez autoriser certains membres choisis à ajouter également des stickers au pack, vous pouvez utiliser la fonctionnalité de liste blanche.",
+        "wh_usages": {
+          "list": "<b>/wh_list :</b> Affiche la liste de toutes les personnes ajoutées à la liste blanche du groupe",
+          "add": "<b>/wh_add <i>(user_id) :</i></b> Ajoute la personne avec l'ID spécifié à la liste",
+          "remove": "<b>/wh_rm <i>(user_id) :</i></b> Retire la personne avec l'ID spécifié de la liste"
+        }
+      },
+      "lang": "Si vous le souhaitez, vous pouvez modifier la langue du bot dans le tchat actuel en utilisant la commande /langb (seuls les tchats privés, groupes et supergroupes sont pris en charge)",
+      "about": {
+        "text1": "Si vous souhaitez examiner le code source du projet, vous pouvez y accéder via GitHub sur <a href=\"https://github.com/mamiiblt/tg-brat-bot\">ce dépôt de code</a>. <i>(n'oubliez pas de laisser une ⭐ en passant)</i>",
+        "text2": "Ce bot a été développé par <a href=\"tg://user?id=5469784776\"><b>mamiiblt</b></a>.",
+        "devWebsite": "Ouvrir le site du développeur",
+        "sourceCode": "Examiner le code source"
+      },
+      "backToMenu": "Retour au menu"
+    },
+    "save": {
+      "baseErrs": {
+        "onlyGroup": "Cette fonction est conçue pour être utilisée uniquement dans les groupes et supergroupes.",
+        "replyRequired": "Pour pouvoir enregistrer un sticker dans le pack du groupe, vous devez écrire cette commande en réponse à ce sticker / cette image.",
+        "allowedMedia": "Vous ne pouvez enregistrer que des stickers et des photos dans le pack. Les autres types de médias ne sont pas pris en charge.",
+        "idIsUnknown": "Je ne connais pas votre ID utilisateur ; vous devez envoyer un message privé au bot et faire /start.",
+        "invalidPerms": "Vous devez être administrateur pour utiliser cette fonction, désolé 😭",
+        "maxSizeReached": "Le pack de stickers actuel du groupe a <b>atteint le nombre maximum de stickers ({{maxSize}})</b>, un nouveau pack de stickers du groupe est en cours de création."
+      },
+      "errs": {
+        "ANIMATED_STICKERS_NOT_ALLOWED": "⚠️ Les stickers animés ou vidéo ne peuvent pas être ajoutés au pack du groupe.",
+        "UNKNOWN_ERROR": "⚠️ Une erreur inconnue est survenue du côté du bot, veuillez réessayer ou envoyer un retour au développeur du bot.",
+        "USER_NOT_STARTED_BOT": "⚠️ Telegram doit vous reconnaître afin de pouvoir créer des packs de stickers en votre nom. Veuillez cliquer sur 👉 @brat_sticker_bot en privé, appuyer sur le bouton <b>DÉMARRER</b>, puis réessayer."
+      },
+      "SUCCESS_CREATE": "Un nouveau pack de stickers du groupe a été créé pour ce tchat <b>({{chatName}})</b> par <a href=\"{{userUrl}}\"><b>{{userName}}</b></a>. Vous pouvez ajouter plus de stickers à <a href=\"{{packUrl}}\">ce pack</a> avec la commande /bs si vous le souhaitez.",
+      "SUCCESS_ADD": "Le sticker a été ajouté avec succès au <a href=\"{{packUrl}}\">pack de stickers brat du groupe</a> par <a href=\"{{adderUserId}}\"><b>{{adderName}}</b></a> 🎉"
+    },
+    "wh": {
+      "errs": {
+        "onlyGroup": "Cette commande est conçue pour les groupes, pas pour les tchats privés.",
+        "thisIsNotNumeric": "La valeur <i>{{value}}</i> ne semble pas être un ID numérique",
+        "thisIdIsntInThisChat": "Il n'y a personne avec cet ID dans ce groupe, veuillez vérifier à nouveau.",
+        "unknown": "Le rôle et les autorisations de cet utilisateur n'ont pas pu être déterminés pour une raison inconnue. Un utilisateur avec cet ID n'existe peut-être pas ou un problème est survenu du côté du bot.",
+        "alreadyAdded": "Cet utilisateur est déjà dans la liste blanche. Vous pouvez lister tous les utilisateurs ajoutés à la liste blanche avec la commande /wh_list.",
+        "notAdded": "Cet utilisateur n'est pas dans la liste blanche ou son ID est invalide ; veuillez vérifier à nouveau (vous pouvez lister toutes les personnes ajoutées à la liste avec la commande /wh_list)",
+        "anErrorOccurred": "Une erreur inconnue est survenue lors de l'affichage de la liste des utilisateurs, veuillez réessayer ou le signaler au propriétaire du bot."
+      },
+      "isLeftOrKicked": "Malheureusement, cet utilisateur ne peut pas être ajouté à la liste blanche en raison de son rôle dans le groupe. Il est peut-être banni, expulsé, restreint ou a quitté le groupe. Rôle de l'utilisateur : <i>{{role}}</i>",
+      "successAdd": "L'utilisateur <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> a été ajouté à la liste blanche par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
+      "successDelete": "L'utilisateur <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> a été retiré de la liste blanche du groupe par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
+      "loading": "⏳ Chargement des utilisateurs...",
+      "listingHeader": "<b>Un total de {{userSize}} utilisateurs ont été ajoutés à la liste blanche dans ce groupe</b>"
+    }
+  }
+}
