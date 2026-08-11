@@ -7,27 +7,26 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command, Translator} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
-import {sendError} from "@/utils/BotUtils";
-import {Message} from "node-telegram-bot-api";
+import { Command, Translator } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
+import { sendError } from "@/utils/BotUtils";
+import { Message } from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
-import {checkAndParseAR} from "@/utils/WhitelistUtils";
+import { checkAndParseAR } from "@/utils/WhitelistUtils";
 
 export default {
     name: "wh_add",
     description: "Add a user into group whitelist via ID.",
     async execute(msg, trs, args) {
-
-        const { status, failReason, actionUser, userId, user } = await checkAndParseAR(msg, trs)
+        const { status, failReason, actionUser, userId, user } = await checkAndParseAR(msg, trs, false)
         if (status == "FAILURE") return await sendError(msg, failReason, msg.from!!, false)
 
         const addResponse = await addUserToWhitelist(msg, trs, userId)
         if (addResponse.status == "ERROR") return await sendError(msg, addResponse.reason!!, actionUser, false)
 
         await getBot().sendMessage(msg.chat.id, trs.get("cmds.wh.successAdd", {
-            userUrl: `tg://user?id=${user.id}`,
-            userName: user.first_name,
+            userUrl: `tg://user?id=${user == undefined ? userId : user.id}`,
+            userName: user == undefined ? `Unknown User (ID: ${userId})` : user.first_name,
             adminUrl: `tg://user?id=${actionUser.id}`,
             adminName: actionUser.first_name,
         }), {

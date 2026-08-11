@@ -7,28 +7,28 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {isNumeric} from "@/utils/BotUtils";
-import {getBot} from "@/bot/BratBot";
-import {Translator} from "@/types/Command";
-import TelegramBot, {Message} from "node-telegram-bot-api";
+import { isNumeric } from "@/utils/BotUtils";
+import { getBot } from "@/bot/BratBot";
+import { Translator } from "@/types/Command";
+import TelegramBot, { Message } from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
-import {writeLog} from "@/utils/Logger";
+import { writeLog } from "@/utils/Logger";
 
 type CheckResult =
     | {
-    status: "SUCCESS";
-    actionUser: TelegramBot.User;
-    userId: number;
-    user: TelegramBot.User;
-    failReason?: never;
-}
+        status: "SUCCESS";
+        actionUser: TelegramBot.User;
+        userId: number;
+        user?: TelegramBot.User;
+        failReason?: never;
+    }
     | {
-    status: "FAILURE";
-    failReason: string;
-    actionUser?: never;
-    userId?: never;
-    user?: never;
-};
+        status: "FAILURE";
+        failReason: string;
+        actionUser?: never;
+        userId?: never;
+        user?: never;
+    };
 
 export async function isUserWhitelisted(msg: Message, user: TelegramBot.User) {
     try {
@@ -52,7 +52,7 @@ export async function isUserWhitelisted(msg: Message, user: TelegramBot.User) {
     }
 }
 
-export async function checkAndParseAR(msg: Message, trs: Translator): Promise<CheckResult> {
+export async function checkAndParseAR(msg: Message, trs: Translator, allowUserIfNotExists: boolean): Promise<CheckResult> {
     if (msg.from == undefined) return { status: "FAILURE", failReason: "MSG sender is unknown" }
 
     const ACTION_USER = msg.from
@@ -60,10 +60,9 @@ export async function checkAndParseAR(msg: Message, trs: Translator): Promise<Ch
     const isChatGroup = msg.chat.type === "group" || msg.chat.type === "supergroup";
     if (!isChatGroup) return { status: "FAILURE", failReason: trs.get("cmds.wh.errs.onlyGroup") }
 
-    const chatMemberData = await getBot().getChatMember(msg.chat.id, ACTION_USER.id)
-
-    const allowedRoles = ["creator", "administrator"]
-    if (!allowedRoles.includes(chatMemberData.status)) return { status: "FAILURE", failReason: trs.get("cmds.save.baseErrs.invalidPerms")}
+    // const chatMemberData = await getBot().getChatMember(msg.chat.id, ACTION_USER.id)
+    // const allowedRoles = ["creator", "administrator"]
+    //if (!allowedRoles.includes(chatMemberData.status)) return { status: "FAILURE", failReason: trs.get("cmds.save.baseErrs.invalidPerms") }
 
     let userRawId: string | undefined
 
@@ -77,32 +76,39 @@ export async function checkAndParseAR(msg: Message, trs: Translator): Promise<Ch
     const idValidity = isNumeric(userRawId)
     if (!idValidity) return { status: "FAILURE", failReason: trs.get("cmds.wh.errs.thisIsNotNumeric", { value: userRawId }) }
     const validUserId = parseInt(userRawId!!)
-    const memberData = await isAllowedGroupMember(msg, trs, validUserId)
+    const memberData = await isAllowedGroupMember(msg, trs, validUserId, allowUserIfNotExists)
     if (!memberData.pass) return { status: "FAILURE", failReason: memberData.reason!! }
 
     return {
         status: "SUCCESS",
         actionUser: ACTION_USER,
         userId: validUserId,
-        user: memberData.user!!
+        user: memberData.user
     }
 }
 
-export async function isAllowedGroupMember(msg: Message, trs: Translator, userId: number): Promise<{
+export async function isAllowedGroupMember(msg: Message, trs: Translator, userId: number, allowUserIfNotExists: boolean): Promise<{
     pass: boolean,
     reason?: string,
     user?: TelegramBot.User
 }> {
     try {
         const memberInfo = await getBot().getChatMember(msg.chat.id, userId)
-        const unallowedRoles = ["left", "kicked"]
+        if (allowUserIfNotExists) {
+            return { pass: true, user: memberInfo.user }
+        }
 
+        const unallowedRoles = ["left", "kicked"]
         if (unallowedRoles.includes(memberInfo.status)) {
             return { pass: false, reason: trs.get("cmds.wh.errs.isLeftOrKicked", { role: memberInfo.status }) }
         } else {
             return { pass: true, user: memberInfo.user }
         }
     } catch (e) {
-        return { pass: false, reason: trs.get("cmds.wh.errs.unknown") }
+        if (allowUserIfNotExists) {
+            return { pass: true, user: undefined }
+        } else {
+            return { pass: false, reason: trs.get("cmds.wh.errs.unknown") }
+        }
     }
 }
