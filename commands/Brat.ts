@@ -7,19 +7,22 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
+import { Command } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
 import * as fs from "node:fs";
-import {getBrowser} from "@/bot/Browser";
+import { getBrowser } from "@/bot/Browser";
 import path from "node:path";
-import {createBratPage, defaultPageConfig} from "@/utils/html/BratPage";
-import TelegramBot, {InlineKeyboardMarkup} from "node-telegram-bot-api";
-import {sendError} from "@/utils/BotUtils";
+import { createBratPage, defaultPageConfig } from "@/utils/html/BratPage";
+import TelegramBot, { InlineKeyboardMarkup } from "node-telegram-bot-api";
+import { sendError } from "@/utils/BotUtils";
 
 const themeMap = {
-    gr: {bg: '#7AD000', tx: '#000000'}, // green
-    wh: {bg: "#FFFFFF", tx: "#070707"}, // white
-    bl: {bg: "#0A00AD", tx: "#DE0000"} // blue
+    gr: { bg: '#7AD000', tx: '#000000' }, // green
+    wh: { bg: "#FFFFFF", tx: "#070707" }, // white
+    bl: { bg: "#0A00AD", tx: "#DE0000" }, // blue
+    bk: { bg: "#000000", tx: "#FFFFFF" }, // black
+    yw: { bg: "#F7FF00", tx: "#000000" }, // yellow
+    cy: { bg: "#00FFFF", tx: "#000000" }, // cyan
 }
 
 const fontData = {
@@ -133,8 +136,7 @@ export async function generateBratImage(cfg: BratConfig) {
     const browser = getBrowser();
     const page = await browser.newPage();
 
-    const isThemeWh = cfg.theme.bg == themeMap.wh.bg
-
+    const isThemeWhOrBl = cfg.theme.bg == themeMap.wh.bg || cfg.theme.bg == themeMap.bl.bg
 
     const bratPage = createBratPage({
         text: cfg.text.toString(),
@@ -142,15 +144,15 @@ export async function generateBratImage(cfg: BratConfig) {
         theme: {
             backgroundHex: cfg.theme.bg,
             textHex: cfg.theme.tx,
-            boxPadding: isThemeWh ? 60 : 35
+            boxPadding: isThemeWhOrBl ? 60 : 35
         },
         font: {
-            size: cfg.fontSize == defaultPageConfig.fontSize && isThemeWh ? defaultPageConfig.fontSize + 500 : cfg.fontSize,
+            size: cfg.fontSize,
             weight: defaultPageConfig.fontWeight,
             base64: fontData.base64,
             familyName: fontData.familyName,
             lineHeight: defaultPageConfig.lineHeight,
-            textAlign: isThemeWh ? "justify" : "center",
+            textAlign: isThemeWhOrBl ? "justify" : "center",
             alignItems: "center",
         }
     })

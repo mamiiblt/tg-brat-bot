@@ -55,8 +55,7 @@
           "rbe": "<b>rbe:</b> brat'ın hafif bulanıklık efektini kaldırır.",
           "png": "<b>png:</b> Sticker yerine PNG olarak gönderir.",
           "scr": "<b>scr:</b> Bir karalama efekti ekler",
-          "color": "<b>[color]:</b> Temayı değiştirir, her temanın farklı duruşları olabilir. (gr yeşil, wh beyaz, bl mavi renkleridir.)",
-          "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 185)"
+          "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 180)"
         },
         "saveUsage": "İsterseniz bu bot ile oluşturduğunuz çıkartmaları /bs komutu ile grubunuzun çıkartma paketine ekleyebilirsiniz. Bu komuta herhangi bir argüman veya ek yazılamaz.",
         "saveUsage2": "Bir çıkartmayı iki farklı yolla pakete kaydedebilirsiniz. Oluşturulan sticker'ın altındaki \"Save to group pack\" butonuna tıklayarak veya kaydetmek istediğiniz herhangi bir sticker'a /bs komutu ile yanıt vererek.",
@@ -70,6 +69,20 @@
           "add": "<b>/wh_add <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeye ekler",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeden çıkarır"
         }
+      },
+      "color": {
+        "title": "<b>Sticker Rengi Seçenekleri</b>",
+        "desc": "Oluşturulan brat sticker'ının rengini /b komutunda <b>[color]</b> argümanını kullanarak değiştirebilirsin. Mevcut renk seçenekleri aşağıda listelenmiştir ve sticker'larını özelleştirmek için bunları kullanabilirsin.",
+        "codes": {
+          "gr": "<b>gr:</b> Yeşil (varsayılan)",
+          "wh": "<b>wh:</b> Beyaz",
+          "bk": "<b>bk:</b> Siyah",
+          "bl": "<b>bl:</b> Mavi",
+          "yl": "<b>yl:</b> Sarı",
+          "pk": "<b>pk:</b> Pembe",
+          "cy": "<b>cy:</b> Camgöbeği"
+        },
+        "howToUse": "💡 Bir renk seçeneğini kullanmak için ilgili kodu /b komutuna eklemen yeterlidir. Örneğin, beyaz renkte bir brat sticker oluşturmak için <b>/b wh</b> komutunu ve ardından mesajını yazabilirsin."
       },
       "lang": "İsterseniz /langb komutunu kullanarak şu an ki sohbetteki botun dilini değiştirebilirsin (sadece özel sohbet, grup ve supergroup desteklenir)",
       "about": {

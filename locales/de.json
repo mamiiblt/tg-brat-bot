@@ -55,8 +55,7 @@
           "rbe": "<b>rbe:</b> entfernt den leichten Unschärfeeffekt.",
           "png": "<b>png:</b> sendet den Sticker als PNG statt als Sticker.",
           "scr": "<b>scr:</b> fügt einen Kritzeleffekt hinzu.",
-          "color": "<b>[color]:</b> ändert das Theme (gr Grün, wh Weiß, bl Blau).",
-          "fs": "<b>fs-[number]:</b> ändert die Schriftgröße (Standard: 185)."
+          "fs": "<b>fs-[number]:</b> ändert die Schriftgröße (Standard: 180)."
         },
         "saveUsage": "Du kannst erstellte Sticker mit dem Befehl /bs zum Gruppen-Stickerpaket hinzufügen.",
         "saveUsage2": "Du kannst Sticker auf zwei Arten speichern: über den Button „Zum Gruppenpaket speichern“ oder indem du mit /bs auf einen Sticker antwortest.",
@@ -70,6 +69,20 @@
           "add": "<b>/wh_add <i>(user_id):</i></b> fügt den Benutzer zur Whitelist hinzu",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> entfernt den Benutzer aus der Whitelist"
         }
+      },
+      "color": {
+        "title": "<b>Sticker-Farboptionen</b>",
+        "desc": "Du kannst die Farbe des erstellten Brat-Stickers ändern, indem du das Argument <b>[color]</b> im /b-Befehl verwendest. Die verfügbaren Farboptionen sind unten aufgeführt und können zur Anpassung deiner Sticker verwendet werden.",
+        "codes": {
+          "gr": "<b>gr:</b> Grün (Standard)",
+          "wh": "<b>wh:</b> Weiß",
+          "bk": "<b>bk:</b> Schwarz",
+          "bl": "<b>bl:</b> Blau",
+          "yl": "<b>yl:</b> Gelb",
+          "pk": "<b>pk:</b> Pink",
+          "cy": "<b>cy:</b> Cyan"
+        },
+        "howToUse": "💡 Um eine Farboption zu verwenden, füge einfach den entsprechenden Code zum /b-Befehl hinzu. Um beispielsweise einen Brat-Sticker in Weiß zu erstellen, verwende den Befehl <b>/b wh</b> und schreibe anschließend deine Nachricht."
       },
       "lang": "Mit dem Befehl /langb kannst du die Sprache im aktuellen Chat ändern (nur Privat-, Gruppen- und Supergruppen-Chats werden unterstützt).",
       "about": {

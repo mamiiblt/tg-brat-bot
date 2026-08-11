@@ -55,7 +55,6 @@
           "rbe": "<b>rbe :</b> Supprime le léger effet de flou de brat.",
           "png": "<b>png :</b> Envoie sous forme de PNG au lieu d'un sticker.",
           "scr": "<b>scr :</b> Ajoute un effet de gribouillage",
-          "color": "<b>[color] :</b> Change le thème, chaque thème peut avoir un rendu différent. (gr vert, wh blanc, bl bleu.)",
           "fs": "<b>fs-[number] :</b> Modifie la taille de la police. (par défaut : 185)"
         },
         "saveUsage": "Si vous le souhaitez, vous pouvez ajouter les stickers créés avec ce bot au pack de stickers de votre groupe en utilisant la commande /bs. Aucun argument ni texte supplémentaire ne peut être ajouté à cette commande.",
@@ -79,6 +78,20 @@
         "sourceCode": "Examiner le code source"
       },
       "backToMenu": "Retour au menu"
+    },
+    "color": {
+      "title": "<b>Options de couleur des stickers</b>",
+      "desc": "Tu peux modifier la couleur du sticker Brat généré en utilisant l’argument <b>[color]</b> dans la commande /b. Les options de couleur disponibles sont listées ci-dessous et peuvent être utilisées pour personnaliser tes stickers.",
+      "codes": {
+        "gr": "<b>gr :</b> Vert (par défaut)",
+        "wh": "<b>wh :</b> Blanc",
+        "bk": "<b>bk :</b> Noir",
+        "bl": "<b>bl :</b> Bleu",
+        "yl": "<b>yl :</b> Jaune",
+        "pk": "<b>pk :</b> Rose",
+        "cy": "<b>cy :</b> Cyan"
+      },
+      "howToUse": "💡 Pour utiliser une option de couleur, il suffit d’inclure le code correspondant dans la commande /b. Par exemple, pour créer un sticker Brat de couleur blanche, utilise la commande <b>/b wh</b> suivie de ton message."
     },
     "save": {
       "baseErrs": {

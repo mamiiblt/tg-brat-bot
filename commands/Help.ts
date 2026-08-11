@@ -98,7 +98,7 @@ export async function sendHelpMessage(trs: Translator, chatId: number, categoryI
 
     }
 
-    const usageCategoryIds = [1, 5, 6]
+    const usageCategoryIds = [1, 5, 6, 7]
     if (usageCategoryIds.includes(categoryId)) {
         const botUsagePage = pageContents.botUsage(trs, categoryId, usageCategoryIds)
         categoryContents = botUsagePage.message
@@ -168,7 +168,19 @@ const pageContents = {
 
         switch (pageNum) {
             case 1:
-                const keys = ["rbe", "png", "scr", "color", "fs"]
+                const colorKeys = ["gr", "wh", "bk", "bl", "yl", "pk", "cy"]
+                const colors: string[] = []
+                colorKeys.forEach((key) => colors.push(`• ${trs.get(`cmds.help.color.codes.${key}`)}`))
+
+                message = [
+                    `${trs.get("cmds.help.color.title")}\n`,
+                    `${trs.get("cmds.help.color.desc")}\n`,
+                    colors.join("\n") + "\n",
+                    `<blockquote>${trs.get("cmds.help.color.howToUse")}</blockquote>`
+                ]
+                break;
+            case 5:
+                const keys = ["rbe", "png", "scr", "fs"]
                 const lines: string[] = []
                 keys.forEach((key) => lines.push(`• ${trs.get(`cmds.help.sectionLng.commands.${key}`)}`))
                 lines.push(`\n${trs.get("cmds.help.sectionLng.cmdExample")}`)
@@ -181,14 +193,14 @@ const pageContents = {
                     lines.join("\n"),
                 ]
                 break;
-            case 5:
+            case 6:
                 message = [
                     `${trs.get("cmds.help.sectionLng.saveUsageTitle")}\n`,
                     `${trs.get("cmds.help.sectionLng.saveUsage")}\n`,
                     `${trs.get("cmds.help.sectionLng.saveUsage2")}`,
                 ]
                 break;
-            case 6:
+            case 7:
                 const keysWh = ["list", "add", "remove"]
                 const linesWh: string[] = []
                 keysWh.forEach((key) => linesWh.push(`• ${trs.get(`cmds.help.sectionLng.wh_usages.${key}`)}`))

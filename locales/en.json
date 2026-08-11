@@ -55,8 +55,7 @@
           "rbe": "<b>rbe:</b> Removes the slight blur effect from the image.",
           "png": "<b>png:</b> Sends it as a PNG instead of a sticker.",
           "scr": "<b>scr:</b> Adds a scribble effect to the top",
-          "color": "<b>[color]:</b> Changes the background to green (gr is green, wh is white, bl is blue)",
-          "fs": "<b>fs-[number]:</b> Changes the font size. (default: 185)"
+          "fs": "<b>fs-[number]:</b> Changes the font size. (default is 180)"
         },
         "saveUsage": "If you want, you can save generated brat stickers into group sticker pack with /bs command. You need to reply to which sticker you want to save. That command doesn't needs any argument or something else.",
         "saveUsage2": "You can save a sticker to a group pack in two different ways: by clicking the “Save to group pack” button below the sticker you created, or by replying to any sticker you want to save with the /bs command.",
@@ -70,6 +69,20 @@
           "add": "<b>/wh_add <i>(user_id):</i></b> Adds the user with the specified ID to the whitelist",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> Removes the user with the specified ID from the whitelist"
         }
+      },
+      "color": {
+        "title": "<b>Sticker Color Options</b>",
+        "desc": "You can change the color of the generated brat sticker by using the <b>[color]</b> argument in the /b command. The available color options are listed below, and you can use them to customize your stickers.",
+        "codes": {
+          "gr": "<b>gr:</b> Green (default)",
+          "wh": "<b>wh:</b> White",
+          "bk": "<b>bk:</b> Black",
+          "bl": "<b>bl:</b> Blue",
+          "yl": "<b>yl:</b> Yellow",
+          "pk": "<b>pk:</b> Pink",
+          "cy": "<b>cy:</b> Cyan"
+        },
+        "howToUse": "💡 To use a color option, simply include the corresponding code in the /b command. For example, to create a brat sticker with a white color, you would use the command: <b>/b wh</b> followed by your message."
       },
       "lang": "You can use /langb command for changing your language for this chat (only pm, group and supergroup is supported).",
       "about": {

@@ -27,10 +27,10 @@ interface PageValues {
 }
 
 export const defaultPageConfig = {
-    blurAmount: 3,
+    blurAmount: 4,
     lineHeight: 1,
-    fontSize: 185,
-    fontWeight: 700,
+    fontSize: 180,
+    fontWeight: 800,
 }
 
 export function createBratPage(pageData: PageValues): string {
