@@ -1,7 +1,8 @@
 FROM node:22-alpine
 
+ARG CHROMIUM_VERSION=151.0.7922.138
+
 RUN apk add --no-cache \
-    chromium \
     nss \
     freetype \
     harfbuzz \
@@ -11,7 +12,17 @@ RUN apk add --no-cache \
     font-noto \
     font-noto-cjk
 
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+RUN wget -q \
+    "https://storage.googleapis.com/chrome-for-testing-public/${CHROMIUM_VERSION}/linux64/chrome-linux64.zip" \
+    -O /tmp/chromium.zip \
+    && unzip -q /tmp/chromium.zip -d /opt \
+    && mv /opt/chrome-linux64 /opt/chromium \
+    && rm /tmp/chromium.zip \
+    && ln -s /opt/chromium/chrome /usr/local/bin/chromium \
+    && fc-cache -f -v
+
+ENV PUPPETEER_EXECUTABLE_PATH=/opt/chromium/chrome
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 WORKDIR /usr/src/app
 
