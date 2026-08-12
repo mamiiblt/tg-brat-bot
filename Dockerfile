@@ -5,7 +5,7 @@ RUN apk add --no-cache \
     nss \
     freetype \
     harfbuzz \
-    @@ -11,7 +12,17 @@ RUN apk add --no-cache \
+    ca-certificates \
     font-noto \
     font-noto-cjk
 
