@@ -65,7 +65,6 @@ const handlers = {
         const text = msg.text?.trim();
         if (!text || msg.from == undefined) return;
         const translator = getTranslator(await getChatLanguage(getChatType(msg.chat.type), msg.from, msg.chat.id))
-        await checkUserIsUsedBot(msg.from, msg)
 
         if (text.trim() == "@brat_sticker_bot") await sendHelpMessage(translator, msg.chat.id, 0, msg.message_thread_id)
 
@@ -74,6 +73,8 @@ const handlers = {
         const command = commands.find(
             c => c.name === getMainCommand(messageArgs[0].replace("/", "").trim())
         );
+
+        if (msg.chat.type == "private") await checkUserIsUsedBot(msg.from, msg)
 
         if (command) {
             try {
