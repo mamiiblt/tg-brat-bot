@@ -25,10 +25,8 @@ const themeMap = {
     cy: { bg: "#00FFFF", tx: "#000000" }, // cyan
 }
 
-const fontData = {
-    familyName: "Arial Narrow",
-    base64: loadFontBase64("./assets/arial_narrow.ttf")
-}
+const arialNarrowFont = loadAssetAsBase64("./assets/arial_narrow.ttf")
+const scribblePng = loadAssetAsBase64("./assets/scribble.png")
 
 interface BratConfig {
     text: string,
@@ -126,10 +124,10 @@ export default {
     }
 } satisfies Command;
 
-function loadFontBase64(fPath: string): string {
-    const fontPath = path.resolve(fPath);
-    const fontBuffer = fs.readFileSync(fontPath)
-    return fontBuffer.toString("base64")
+function loadAssetAsBase64(fPath: string): string {
+    const assetPath = path.resolve(fPath);
+    const assetBuffer = fs.readFileSync(assetPath)
+    return assetBuffer.toString("base64")
 }
 
 export async function generateBratImage(cfg: BratConfig) {
@@ -149,11 +147,15 @@ export async function generateBratImage(cfg: BratConfig) {
         font: {
             size: cfg.fontSize,
             weight: defaultPageConfig.fontWeight,
-            base64: fontData.base64,
-            familyName: fontData.familyName,
+            base64: arialNarrowFont,
+            familyName: "Arial Narrow",
             lineHeight: defaultPageConfig.lineHeight,
             textAlign: isThemeWhOrBl ? "justify" : "center",
             alignItems: "center",
+        },
+        scribble: {
+            isEnabled: cfg.showScribble,
+            fileBase64: scribblePng
         }
     })
 
@@ -173,7 +175,7 @@ export async function generateBratImage(cfg: BratConfig) {
 
             const style = getComputedStyle(el);
             return style.fontFamily.includes(familyName);
-        }, {}, fontData.familyName
+        }, {}, "Arial Narrow"
     );
     await new Promise(resolve => setTimeout(resolve, 50));
 
