@@ -7,14 +7,14 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command, Translator} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
-import {getMentionTag, getMessageType, sendError} from "@/utils/BotUtils";
+import { Command, Translator } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
+import { getMentionTag, getMessageType, sendError } from "@/utils/BotUtils";
 import RDatabase from "@/utils/RDatabase";
-import TelegramBot, {Message} from "node-telegram-bot-api";
+import TelegramBot, { Message } from "node-telegram-bot-api";
 import sharp from "sharp";
-import {isUserWhitelisted} from "@/utils/WhitelistUtils";
-import {writeLog} from "@/utils/Logger";
+import { isUserWhitelisted } from "@/utils/WhitelistUtils";
+import { writeLog } from "@/utils/Logger";
 
 const MAX_STICKER_PACK_SIZE = 120
 
@@ -75,7 +75,7 @@ export async function saveSticker(
             message = `${getMentionTag(actionUser)}, ${trs.get(`cmds.save.errs.${createData.status}`)}`
         }
 
-        await getBot().sendMessage(msg.chat.id,  message!!, {
+        await getBot().sendMessage(msg.chat.id, message!!, {
             parse_mode: "HTML",
             message_thread_id: msg.message_thread_id
         })
@@ -96,7 +96,8 @@ export async function saveSticker(
         await getBot().sendMessage(msg.chat.id, message!!, {
             parse_mode: "HTML",
             message_thread_id: msg.message_thread_id,
-            reply_to_message_id: msg.message_id
+            reply_to_message_id: msg.message_id,
+            disable_web_page_preview: addData.status == "SUCCESS"
         })
 
         // Disable save button for ignoring spams

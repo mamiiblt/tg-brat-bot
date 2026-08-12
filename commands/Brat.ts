@@ -19,9 +19,10 @@ import { sendError } from "@/utils/BotUtils";
 const themeMap = {
     gr: { bg: '#7AD000', tx: '#000000' }, // green
     wh: { bg: "#FFFFFF", tx: "#070707" }, // white
-    bl: { bg: "#0A00AD", tx: "#DE0000" }, // blue
     bk: { bg: "#000000", tx: "#FFFFFF" }, // black
-    yw: { bg: "#F7FF00", tx: "#000000" }, // yellow
+    bl: { bg: "#0A00AD", tx: "#DE0000" }, // blue
+    yl: { bg: "#F7FF00", tx: "#000000" }, // yellow
+    pk: { bg: "#FF00FF", tx: "#000000" }, // pink
     cy: { bg: "#00FFFF", tx: "#000000" }, // cyan
 }
 

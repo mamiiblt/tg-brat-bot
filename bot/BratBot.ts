@@ -136,9 +136,24 @@ const handlers = {
                 await changeUserLanguage(ctx)
             }
 
-            // BU SATIRLAR TUGBİSE GELSİN
             if (ctx.data == "save_sticker") {
-                await saveSticker(trs, ctx.message!!, ctx.from)
+                const msg = ctx.message!!
+                await getBot().editMessageReplyMarkup({
+                    inline_keyboard: [
+                        [{ text: trs.get("cmds.brat.saving"), callback_data: "saving", style: "primary" }]
+                    ]
+                }, {
+                    chat_id: msg.chat.id,
+                    message_id: msg.message_id,
+                })
+                await saveSticker(trs, msg, ctx.from)
+            }
+
+            if (ctx.data == "saving") {
+                await getBot().answerCallbackQuery(ctx.id, {
+                    text: trs.get("cmds.brat.savingMessage"),
+                    show_alert: true
+                })
             }
 
             if (ctx.data == "saved_already") {

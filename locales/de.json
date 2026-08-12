@@ -23,9 +23,11 @@
     "brat": {
       "useBratAsReply": "Bitte antworte mit dem Befehl /b auf die Nachricht, die du in einen Brat-Sticker umwandeln möchtest.",
       "saveToStickerPack": "💾 Zum Paket speichern",
+      "saving": "⏳ Wird gespeichert...",
       "savedAlready": "✅ Bereits im Paket gespeichert!",
       "savedMessage": "Dieser Sticker wurde bereits dem Paket hinzugefügt, du musst ihn nicht erneut hinzufügen.",
-      "onlyTextAllowed": "Du kannst nur Textnachrichten in Brat-Sticker umwandeln..."
+      "onlyTextAllowed": "Du kannst nur Textnachrichten in Brat-Sticker umwandeln...",
+      "savingMessage": "Der Sticker wird gerade im Gruppenpaket gespeichert, bitte warte einen Moment..."
     },
     "status": {
       "title": "Bot-Container-Status",

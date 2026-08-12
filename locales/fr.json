@@ -23,9 +23,11 @@
     "brat": {
       "useBratAsReply": "Veuillez répondre au message que vous souhaitez transformer en brat avec la commande /b.",
       "saveToStickerPack": "💾 Enregistrer dans le pack",
+      "saving": "⏳ Enregistrement en cours...",
       "savedAlready": "✅ Enregistré dans le pack !",
       "savedMessage": "Ce sticker est déjà ajouté au pack, inutile de l'ajouter à nouveau.",
-      "onlyTextAllowed": "Vous ne pouvez transformer que des expressions textuelles en sticker brat..."
+      "onlyTextAllowed": "Vous ne pouvez transformer que des expressions textuelles en sticker brat...",
+      "savingMessage": "Le sticker est en cours d'enregistrement dans le pack du groupe, veuillez patienter un instant..."
     },
     "status": {
       "title": "Statut du conteneur du bot",

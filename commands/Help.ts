@@ -243,7 +243,7 @@ const pageContents = {
             message: [
                 "<b>Please select one of the languages below.</b>\n",
                 message,
-                "<blockquote>If you’d like to contribute a translation, feel free to submit a pull request to the <a href='https://github.com/mamiiblt/tg-brat-bot'>source code</a>!</blockquote>"
+                "\n<blockquote>If you’d like to contribute a translation, feel free to submit a pull request to the <a href='https://github.com/mamiiblt/tg-brat-bot'>source code</a>!</blockquote>"
             ]
         }
     }
