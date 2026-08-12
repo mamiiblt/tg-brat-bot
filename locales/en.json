@@ -57,6 +57,7 @@
           "rbe": "<b>rbe:</b> Removes the slight blur effect from the image.",
           "png": "<b>png:</b> Sends it as a PNG instead of a sticker.",
           "scr": "<b>scr:</b> Adds a scribble effect to the top",
+          "m": "<b>m:</b> Adds a mirror effect to sticker.",
           "fs": "<b>fs-[number]:</b> Changes the font size. (default is 180)"
         },
         "saveUsage": "If you want, you can save generated brat stickers into group sticker pack with /bs command. You need to reply to which sticker you want to save. That command doesn't needs any argument or something else.",

@@ -22,8 +22,8 @@ const themeMap = {
     bk: { bg: "#000000", tx: "#FFFFFF" }, // black
     bl: { bg: "#0A00AD", tx: "#DE0000" }, // blue
     yl: { bg: "#F7FF00", tx: "#000000" }, // yellow
-    pk: { bg: "#FF00FF", tx: "#000000" }, // pink
-    cy: { bg: "#00FFFF", tx: "#000000" }, // cyan
+    pk: { bg: "#f5abcc", tx: "#000000" }, // pink
+    cy: { bg: "#00FFFF", tx: "#1b1b1b" }, // cyan
 }
 
 const arialNarrowFont = loadAssetAsBase64("./assets/arial_narrow.ttf")
@@ -36,6 +36,7 @@ interface BratConfig {
     removeBlurEffect: boolean,
     rawPng: boolean,
     showScribble: boolean,
+    mirrorEffect: boolean
 }
 
 export default {
@@ -92,6 +93,7 @@ export default {
             removeBlurEffect: commandArgs.includes("rbe"),
             rawPng: commandArgs.includes("png"),
             showScribble: commandArgs.includes("scr"),
+            mirrorEffect: commandArgs.includes("m")
         } as BratConfig
 
         const pngFile = await generateBratImage(bratConfig)
@@ -157,7 +159,8 @@ export async function generateBratImage(cfg: BratConfig) {
         scribble: {
             isEnabled: cfg.showScribble,
             fileBase64: scribblePng
-        }
+        },
+        isMirrorEffectEnabled: cfg.mirrorEffect
     })
 
     await page.setContent(bratPage, {

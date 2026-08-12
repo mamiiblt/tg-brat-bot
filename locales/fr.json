@@ -54,10 +54,11 @@
         "pleaseSelect2": "Si vous êtes bloqué, si vous avez des difficultés à comprendre ou si vous vous posez des questions sur le bot, vous pouvez cliquer sur les boutons de catégorie ci-dessous pour obtenir de l'aide. Si vous n'avez toujours pas obtenu la réponse souhaitée, vous pouvez obtenir de l'aide de la part du développeur ou des membres via ce groupe. Comme ce bot est un projet réalisé pour le plaisir pendant mon temps libre, la correction ou la détection des erreurs peut prendre du temps.",
         "firstMsg": "Si vous souhaitez transformer un message en brat, il vous suffit de répondre à ce message avec la commande /b. Si vous souhaitez personnaliser le sticker à créer, vous pouvez ajouter les arguments suivants à la commande :",
         "commands": {
-          "rbe": "<b>rbe :</b> Supprime le léger effet de flou de brat.",
-          "png": "<b>png :</b> Envoie sous forme de PNG au lieu d'un sticker.",
-          "scr": "<b>scr :</b> Ajoute un effet de gribouillage",
-          "fs": "<b>fs-[number] :</b> Modifie la taille de la police. (par défaut : 185)"
+          "rbe": "<b>rbe:</b> Supprime le léger effet de flou de brat.",
+          "png": "<b>png:</b> Envoie sous forme de PNG au lieu d'un sticker.",
+          "scr": "<b>scr:</b> Ajoute un effet de gribouillage",
+          "m": "<b>m:</b> Ajoute un effet de miroir",
+          "fs": "<b>fs-[number]:</b> Modifie la taille de la police. (par défaut : 180)"
         },
         "saveUsage": "Si vous le souhaitez, vous pouvez ajouter les stickers créés avec ce bot au pack de stickers de votre groupe en utilisant la commande /bs. Aucun argument ni texte supplémentaire ne peut être ajouté à cette commande.",
         "saveUsage2": "Vous pouvez enregistrer un sticker dans le pack de deux manières différentes : en cliquant sur le bouton « Save to group pack » sous le sticker créé, ou en répondant à n'importe quel sticker que vous souhaitez enregistrer avec la commande /bs.",

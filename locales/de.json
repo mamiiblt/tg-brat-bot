@@ -57,6 +57,7 @@
           "rbe": "<b>rbe:</b> entfernt den leichten Unschärfeeffekt.",
           "png": "<b>png:</b> sendet den Sticker als PNG statt als Sticker.",
           "scr": "<b>scr:</b> fügt einen Kritzeleffekt hinzu.",
+          "m": "<b>m:</b> fügt einen Spiegeleffekt hinzu.",
           "fs": "<b>fs-[number]:</b> ändert die Schriftgröße (Standard: 180)."
         },
         "saveUsage": "Du kannst erstellte Sticker mit dem Befehl /bs zum Gruppen-Stickerpaket hinzufügen.",

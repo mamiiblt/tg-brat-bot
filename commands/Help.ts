@@ -180,7 +180,7 @@ const pageContents = {
                 ]
                 break;
             case 5:
-                const keys = ["rbe", "png", "scr", "fs"]
+                const keys = ["rbe", "m", "png", "scr", "fs"]
                 const lines: string[] = []
                 keys.forEach((key) => lines.push(`• ${trs.get(`cmds.help.sectionLng.commands.${key}`)}`))
                 lines.push(`\n${trs.get("cmds.help.sectionLng.cmdExample")}`)

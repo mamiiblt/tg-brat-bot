@@ -18,11 +18,11 @@ interface PageValues {
         textAlign: string;
         alignItems: string;
     };
-
     scribble: {
         isEnabled: boolean;
         fileBase64: string;
     };
+    isMirrorEffectEnabled: boolean;
 }
 
 export const defaultPageConfig = {
@@ -97,6 +97,7 @@ export function createBratPage(pageData: PageValues): string {
                         word-wrap: break-word;
                         position: relative;
                         z-index: 1;
+                        transform: ${pageData.isMirrorEffectEnabled ? "scaleX(-1)" : "none"};
                     }
 
                     #scribble {

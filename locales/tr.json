@@ -57,6 +57,7 @@
           "rbe": "<b>rbe:</b> brat'ın hafif bulanıklık efektini kaldırır.",
           "png": "<b>png:</b> Sticker yerine PNG olarak gönderir.",
           "scr": "<b>scr:</b> Bir karalama efekti ekler",
+          "m": "<b>m:</b> Çıkartmaya bir ayna efekti ekler",
           "fs": "<b>fs-[number]:</b> Yazı boyutunu değiştirir. (varsayılan: 180)"
         },
         "saveUsage": "İsterseniz bu bot ile oluşturduğunuz çıkartmaları /bs komutu ile grubunuzun çıkartma paketine ekleyebilirsiniz. Bu komuta herhangi bir argüman veya ek yazılamaz.",
