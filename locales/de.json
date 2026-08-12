@@ -65,8 +65,9 @@
         "cmdExample": "<b>Befehlsbeispiele</b>",
         "general": "<b>Erstellung von Brat-Stickern</b>",
         "whitelistTitle": "<b>Whitelist-Funktion</b>",
-        "whitelist": "Standardmäßig dürfen nur Gruppenadministratoren Sticker zum Paket hinzufügen. Mit der Whitelist kannst du auch bestimmten Mitgliedern diese Berechtigung geben.",
+        "whitelist": "Standardmäßig dürfen nur Gruppenadministratoren Sticker zum Gruppenpaket hinzufügen. Wenn Sie diese Funktion aktivieren, können Sie auch bestimmten Mitgliedern diese Berechtigung erteilen.",
         "wh_usages": {
+          "set": "<b>/wh_st <i>(enable / disable):</i></b> Aktiviert oder deaktiviert die Whitelist-Funktion",
           "list": "<b>/wh_list:</b> listet alle Mitglieder der Whitelist auf",
           "add": "<b>/wh_add <i>(user_id):</i></b> fügt den Benutzer zur Whitelist hinzu",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> entfernt den Benutzer aus der Whitelist"
@@ -114,7 +115,7 @@
     },
     "wh": {
       "errs": {
-        "onlyGroup": "Dieser Befehl ist nur für Gruppen gedacht, nicht für private Chats.",
+        "onlyGroup": "Die Whitelist-Funktion ist für diese Gruppe nicht aktiviert. Um diesen Befehl zu verwenden, müssen Sie sie zuerst mit dem Befehl <b>/wh_st enable</b> aktivieren.",
         "thisIsNotNumeric": "<i>{{value}}</i> scheint keine gültige numerische ID zu sein.",
         "thisIdIsntInThisChat": "Diese ID existiert in diesem Chat nicht.",
         "isLeftOrKicked": "Dieser Benutzer kann nicht auf die Whitelist gesetzt werden (gebannt, entfernt oder verlassen). Rolle: <i>{{role}}</i>",
@@ -126,7 +127,16 @@
       "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> wurde von <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> zur Whitelist hinzugefügt.",
       "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> wurde von <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> aus der Whitelist entfernt.",
       "loading": "⏳ Benutzer werden geladen...",
-      "listingHeader": "<b>In diesem Chat sind insgesamt {{userSize}} Benutzer auf der Whitelist</b>"
+      "listingHeader": "<b>In diesem Chat sind insgesamt {{userSize}} Benutzer auf der Whitelist</b>",
+      "en_ds": {
+        "unknownState": "Die neue Whitelist-Statusaktion muss 'enable' oder 'disable' sein, stattdessen wurde '{{state}}' erhalten.",
+        "listEnabled": "Die Whitelist-Funktion wurde für diese Gruppe von Admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> aktiviert.",
+        "listDisabled": "Die Whitelist-Funktion wurde für diese Gruppe von Admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> deaktiviert.",
+        "alreadyEnabled": "Die Whitelist-Funktion ist für diese Gruppe bereits aktiviert.",
+        "alreadyDisabled": "Die Whitelist-Funktion ist für diese Gruppe bereits deaktiviert.",
+        "anErrorOccurred": "Beim Ändern des Status der Whitelist-Funktion ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es erneut oder melden Sie den Fehler dem Entwickler."
+      }
     }
-  }
+  },
+  "wait": "⏳ Bitte warten..."
 }

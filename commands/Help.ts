@@ -201,7 +201,7 @@ const pageContents = {
                 ]
                 break;
             case 7:
-                const keysWh = ["list", "add", "remove"]
+                const keysWh = ["set", "add", "remove", "list"]
                 const linesWh: string[] = []
                 keysWh.forEach((key) => linesWh.push(`• ${trs.get(`cmds.help.sectionLng.wh_usages.${key}`)}`))
 

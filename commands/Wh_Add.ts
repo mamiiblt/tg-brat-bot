@@ -12,12 +12,16 @@ import { getBot } from "@/bot/BratBot";
 import { sendError } from "@/utils/BotUtils";
 import { Message } from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
-import { checkAndParseAR } from "@/utils/WhitelistUtils";
+import { checkAndParseAR, isWhitelistEnabled } from "@/utils/WhitelistUtils";
 
 export default {
     name: "wh_add",
     description: "Add a user into group whitelist via ID.",
     async execute(msg, trs, args) {
+        const isWhEnabled = await isWhitelistEnabled(msg, trs)
+        if (isWhEnabled.status == "FAILURE") return await sendError(msg, isWhEnabled.reason!!, msg.from!!, false)
+        if (isWhEnabled.isEnabled == false) return await sendError(msg, trs.get("cmds.wh.en_ds.isNotEnabled"), msg.from!!, false)
+
         const { status, failReason, actionUser, userId, user } = await checkAndParseAR(msg, trs, false)
         if (status == "FAILURE") return await sendError(msg, failReason, msg.from!!, false)
 

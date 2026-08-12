@@ -30,8 +30,12 @@ type CheckResult =
         user?: never;
     };
 
-export async function isUserWhitelisted(msg: Message, user: TelegramBot.User) {
+export async function isUserWhitelisted(msg: Message, user: TelegramBot.User, trs: Translator) {
     try {
+        const isWhEnabled = await isWhitelistEnabled(msg, trs)
+        if (isWhEnabled.status == "FAILURE") return false
+        if (isWhEnabled.isEnabled == false) return false
+
         const resp = await RDatabase.query(`
             SELECT $1 = ANY(gp_allowed_users) AS user_auth_state
             FROM brat_bot.chat_data
@@ -52,6 +56,29 @@ export async function isUserWhitelisted(msg: Message, user: TelegramBot.User) {
     }
 }
 
+export async function isWhitelistEnabled(msg: Message, trs: Translator): Promise<{
+    status: "SUCCESS" | "FAILURE"
+    reason?: string
+    isEnabled?: boolean
+}> {
+    try {
+        if (msg.chat.type !== "group" && msg.chat.type !== "supergroup") return { status: "FAILURE", reason: trs.get("cmds.wh.errs.onlyGroup") }
+
+        const resp = await RDatabase.query(`
+            SELECT is_wh_enabled
+            FROM brat_bot.chat_data
+            WHERE chat_id = $1
+        `, [msg.chat.id])
+
+        if (resp.rows.length == 0) return { status: "SUCCESS", isEnabled: false }
+
+        const isEnabled = resp.rows[0].is_wh_enabled
+        return { status: "SUCCESS", isEnabled }
+    } catch (e) {
+        return { status: "FAILURE", reason: "An error occurred while checking whitelist state." }
+    }
+}
+
 export async function checkAndParseAR(msg: Message, trs: Translator, allowUserIfNotExists: boolean): Promise<CheckResult> {
     if (msg.from == undefined) return { status: "FAILURE", failReason: "MSG sender is unknown" }
 
@@ -60,9 +87,9 @@ export async function checkAndParseAR(msg: Message, trs: Translator, allowUserIf
     const isChatGroup = msg.chat.type === "group" || msg.chat.type === "supergroup";
     if (!isChatGroup) return { status: "FAILURE", failReason: trs.get("cmds.wh.errs.onlyGroup") }
 
-    // const chatMemberData = await getBot().getChatMember(msg.chat.id, ACTION_USER.id)
-    // const allowedRoles = ["creator", "administrator"]
-    //if (!allowedRoles.includes(chatMemberData.status)) return { status: "FAILURE", failReason: trs.get("cmds.save.baseErrs.invalidPerms") }
+    const chatMemberData = await getBot().getChatMember(msg.chat.id, ACTION_USER.id)
+    const allowedRoles = ["creator", "administrator"]
+    if (!allowedRoles.includes(chatMemberData.status)) return { status: "FAILURE", failReason: trs.get("cmds.save.baseErrs.invalidPerms") }
 
     let userRawId: string | undefined
 

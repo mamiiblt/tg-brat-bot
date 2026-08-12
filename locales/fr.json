@@ -65,8 +65,9 @@
         "cmdExample": "<b>Exemples d'utilisation des commandes</b>",
         "general": "<b>Création de stickers Brat</b>",
         "whitelistTitle": "<b>Fonctionnalité de liste blanche</b>",
-        "whitelist": "Sous des conditions normales, seuls les administrateurs du groupe sont autorisés à enregistrer des stickers dans le pack du groupe. Si vous souhaitez autoriser certains membres choisis à ajouter également des stickers au pack, vous pouvez utiliser la fonctionnalité de liste blanche.",
+        "whitelist": "Dans des conditions normales, seuls les administrateurs du groupe sont autorisés à enregistrer des stickers dans le pack du groupe. En activant cette fonctionnalité, vous pouvez également accorder cette autorisation à certains membres.",
         "wh_usages": {
+          "set": "<b>/wh_st <i>(enable / disable):</i></b> Active ou désactive la fonctionnalité de liste blanche",
           "list": "<b>/wh_list :</b> Affiche la liste de toutes les personnes ajoutées à la liste blanche du groupe",
           "add": "<b>/wh_add <i>(user_id) :</i></b> Ajoute la personne avec l'ID spécifié à la liste",
           "remove": "<b>/wh_rm <i>(user_id) :</i></b> Retire la personne avec l'ID spécifié de la liste"
@@ -126,7 +127,18 @@
       "successAdd": "L'utilisateur <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> a été ajouté à la liste blanche par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
       "successDelete": "L'utilisateur <a href=\"{{userUrl}}\"><b>{{userName}}</b></a> a été retiré de la liste blanche du groupe par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
       "loading": "⏳ Chargement des utilisateurs...",
-      "listingHeader": "<b>Un total de {{userSize}} utilisateurs ont été ajoutés à la liste blanche dans ce groupe</b>"
+      "listingHeader": "<b>Un total de {{userSize}} utilisateurs ont été ajoutés à la liste blanche dans ce groupe</b>",
+      "en_ds": {
+        "unknownState": "L'opération du nouvel état de la liste blanche doit être 'enable' ou 'disable', mais '{{state}}' a été reçu à la place.",
+        "listEnabled": "La fonctionnalité de liste blanche a été activée pour ce groupe par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
+        "listDisabled": "La fonctionnalité de liste blanche a été désactivée pour ce groupe par l'administrateur <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>.",
+        "alreadyEnabled": "La fonctionnalité de liste blanche est déjà activée pour ce groupe.",
+        "alreadyDisabled": "La fonctionnalité de liste blanche est déjà désactivée pour ce groupe.",
+        "anErrorOccurred": "Une erreur inconnue s'est produite lors de la modification de l'état de la liste blanche. Veuillez réessayer ou signaler le problème au développeur.",
+        "isNotEnabled": "La fonctionnalité de liste blanche n'est pas activée pour ce groupe. Pour utiliser cette commande, vous devez d'abord l'activer avec la commande <b>/wh_st enable</b>",
+        "notAllowed": "La fonctionnalité de liste blanche ne peut être utilisée que dans les groupes et supergroupes. Vous ne pouvez pas utiliser cette commande dans les messages privés ou les chaînes."
+      }
     }
-  }
+  },
+  "wait": "⏳ Veuillez patienter..."
 }

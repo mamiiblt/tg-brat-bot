@@ -43,7 +43,7 @@ export async function saveSticker(
 
     const chatMemberData = await getBot().getChatMember(msg.chat.id, actionUser.id)
 
-    const isUserAllowed = await isUserWhitelisted(msg, actionUser)
+    const isUserAllowed = await isUserWhitelisted(msg, actionUser, trs)
     if (!isUserAllowed) {
         const allowedRoles = ["creator", "administrator"]
         if (!allowedRoles.includes(chatMemberData.status)) return await sendError(msg, trs.get("cmds.save.baseErrs.invalidPerms"), actionUser, true)

@@ -7,12 +7,13 @@
  *  me via mamii@mamii.dev or other ways.
  */
 
-import {Command, Translator} from "@/types/Command";
-import {getBot} from "@/bot/BratBot";
-import {chunkMessage, sendError} from "@/utils/BotUtils";
-import TelegramBot, {Message} from "node-telegram-bot-api";
+import { Command, Translator } from "@/types/Command";
+import { getBot } from "@/bot/BratBot";
+import { chunkMessage, sendError } from "@/utils/BotUtils";
+import TelegramBot, { Message } from "node-telegram-bot-api";
 import RDatabase from "@/utils/RDatabase";
-import {writeLog} from "@/utils/Logger";
+import { writeLog } from "@/utils/Logger";
+import { isWhitelistEnabled } from "@/utils/WhitelistUtils";
 
 export default {
     name: "wh_list",
@@ -22,6 +23,10 @@ export default {
         if (msg.text == undefined) return
 
         const ACTION_USER = msg.from
+
+        const isWhEnabled = await isWhitelistEnabled(msg, trs)
+        if (isWhEnabled.status == "FAILURE") return await sendError(msg, isWhEnabled.reason!!, ACTION_USER, false)
+        if (isWhEnabled.isEnabled == false) return await sendError(msg, trs.get("cmds.wh.en_ds.isNotEnabled"), ACTION_USER, false)
 
         const isChatGroup = msg.chat.type === "group" || msg.chat.type === "supergroup";
         if (!isChatGroup) return await sendError(msg, trs.get("cmds.wh.errs.onlyGroup"), ACTION_USER, false)
@@ -50,7 +55,7 @@ export default {
                 continue
             }
 
-            listArray.push(`<b>${order}.</b> <a href="tg://user?id=${userId}">${member.user?.first_name}</a> (${userId})` )
+            listArray.push(`<b>${order}.</b> <a href="tg://user?id=${userId}">${member.user?.first_name}</a> (${userId})`)
         }
 
         const messages = [

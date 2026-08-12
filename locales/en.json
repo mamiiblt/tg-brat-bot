@@ -65,8 +65,9 @@
         "cmdExample": "<b>Command Usage Examples:</b>",
         "general": "<b>Generating Brat Stickers</b>",
         "whitelistTitle": "<b>Whitelist Feature</b>",
-        "whitelist": "Under normal circumstances, only group administrators have the permission to save stickers to the group pack. If you want specific members to be able to add stickers to the pack as well, you can use the whitelist feature.",
+        "whitelist": "Under normal circumstances, only group administrators are allowed to save stickers to the group pack. When you enable this feature, you can grant specific members this permission as well.",
         "wh_usages": {
+          "set": "<b>/wh_st <i>(enable / disable):</i></b> Enables or disables the whitelist feature",
           "list": "<b>/wh_list:</b> Lists everyone added to the group's whitelist",
           "add": "<b>/wh_add <i>(user_id):</i></b> Adds the user with the specified ID to the whitelist",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> Removes the user with the specified ID from the whitelist"
@@ -114,7 +115,7 @@
     },
     "wh": {
       "errs": {
-        "onlyGroup": "This command is designed for groups, not personal messages.",
+        "onlyGroup": "The whitelist feature can only be used in groups and supergroups. You cannot use this command in private messages or channels.",
         "thisIsNotNumeric": "Value: <i>{{value}}</i> isn't looks like a numeric ID value",
         "thisIdIsntInThisChat": "There is no one with this ID in this group. Please check it again.",
         "isLeftOrKicked": "Unfortunately, this user cannot be added to the whitelist due to their role in the group. They may have been banned, left, or removed from the group. User's role: <i>{{role}}</i>",
@@ -126,7 +127,17 @@
       "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> added to whitelist successfully by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
       "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> is removed from whitelist by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
       "loading": "⏳ Users Loading...",
-      "listingHeader": "<b>Totally {{userSize}} user is whitelisted in this group</b>"
+      "listingHeader": "<b>Totally {{userSize}} user is whitelisted in this group</b>",
+      "en_ds": {
+        "unknownState": "New whitelist state operation should be 'enable' or 'disable' but got '{{state}}' instead.",
+        "listEnabled": "Whitelist feature is enabled for this group by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
+        "listDisabled": "Whitelist feature is disabled for this group by admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a>",
+        "alreadyEnabled": "Whitelist feature is already enabled for this group.",
+        "alreadyDisabled": "Whitelist feature is already disabled for this group.",
+        "anErrorOccurred": "An unknown error occurred while changing whitelist feature state, please try again or report to developer.",
+        "isNotEnabled": "Whitelist feature is not enabled for this group, for use this command you need to enable it first with '/wh_st enable' command ."
+      }
     }
-  }
+  },
+  "wait": "⏳ Please wait..."
 }

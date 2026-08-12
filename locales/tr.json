@@ -65,8 +65,9 @@
         "cmdExample": "<b>Komut Kullanım Örnekleri</b>",
         "general": "<b>Brat Çıkartmaları Oluşturma</b>",
         "whitelistTitle": "<b>Beyaz Liste Özelliği</b>",
-        "whitelist": "Normal şartlarda sadece grup yetkililerinin çıkartmaları grup paketine kaydetmesine izin verilir. Eğer belirlediğiniz üyelerin de pakete ekleyebilmesine izin vermek isterseniz beyaz liste özeliğini kullanabilirsiniz.",
+        "whitelist": "Normal şartlarda sadece grup yetkililerinin çıkartmaları grup paketine kaydetmesine izin verilir. Bu özelliği açtığınızda belirli üyelerin de bu yetkiye sahip olmasını sağlayabilirsiniz.",
         "wh_usages": {
+          "set": "<b>/wh_st <i>(enable / disable):</i></b> Beyaz liste özelliğini açar veya kapatır",
           "list": "<b>/wh_list:</b> Grupta beyaz listeye alınan herkesi listeler",
           "add": "<b>/wh_add <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeye ekler",
           "remove": "<b>/wh_rm <i>(user_id):</i></b> Kimlik numarası verilen kişiyi listeden çıkarır"
@@ -114,7 +115,7 @@
     },
     "wh": {
       "errs": {
-        "onlyGroup": "Bu komut gruplar için tasarlanmıştır, özel sohbetler için değil.",
+        "onlyGroup": "Whitelist özelliği yalnızca grup ve süper gruplarda kullanılabilir. Bu komutu özel mesajlarda veya kanallarda kullanamazsınız.",
         "thisIsNotNumeric": "<i>{{value}}</i> değeri sayısal bir ID gibi durmuyor",
         "thisIdIsntInThisChat": "Bu grupta bu ID numarasına sahip kimse yok, lütfen bir daha kontrol et.",
         "isLeftOrKicked": "Maalesef ki bu kullanıcı gruptaki rolünden ötürü beyaz listeye eklenemiyor. Banlanmış, atılmış, kısıtlanmış veya ayrılmış olabilir. Kullanıcının rolü: <i>{{role}}</i>",
@@ -126,7 +127,17 @@
       "successAdd": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> kullanıcısı yönetici olan <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından beyaz listeye eklendi.",
       "successDelete": "<a href=\"{{userUrl}}\"><b>{{userName}}</b></a> kullanıcısı yönetici olan <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından grubun beyaz listesinden kaldırıldı.",
       "loading": "⏳ Kullanıcılar Yükleniyor...",
-      "listingHeader": "<b>Bu grupta toplam {{userSize}} kullanıcı beyaz listeye alındı</b>"
+      "listingHeader": "<b>Bu grupta toplam {{userSize}} kullanıcı beyaz listeye alındı</b>",
+      "en_ds": {
+        "unknownState": "Yeni whitelist durumu işlemi 'enable' veya 'disable' olmalıdır, ancak bunun yerine '{{state}}' alındı.",
+        "listEnabled": "Whitelist özelliği bu grup için admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından etkinleştirildi.",
+        "listDisabled": "Whitelist özelliği bu grup için admin <a href=\"{{adminUrl}}\"><b>{{adminName}}</b></a> tarafından devre dışı bırakıldı.",
+        "alreadyEnabled": "Whitelist özelliği bu grup için zaten etkin.",
+        "alreadyDisabled": "Whitelist özelliği bu grup için zaten devre dışı.",
+        "anErrorOccurred": "Whitelist özelliğinin durumu değiştirilirken bilinmeyen bir hata oluştu, lütfen tekrar deneyin veya geliştiriciye bildirin.",
+        "isNotEnabled": "Whitelist özelliği bu grup için etkin değil. Bu komutu kullanmak için önce <b>/wh_st enable</b> komutuyla etkinleştirmeniz gerekiyor."
+      }
     }
-  }
+  },
+  "wait": "⏳ Lütfen bekleyin..."
 }
