@@ -58,18 +58,6 @@ export function getBot(): TelegramBot {
     return bot;
 }
 
-const zuzuEggMessages = [
-    "zuzu kimmiş ya burada ben varım ;)",
-    "iyi kedisin aslında sadece arıza çıkarıyorsun arada.",
-    "bir zuzu varmış bir zuzu daha varmış.",
-    "zuzuyu çağırın ama beni çağırmayın... olur mu :(",
-    "zuzu hemen cevap vermese ölür mü? bak yine atladı hemen...",
-    "brat kim ki... kim brat diye çağırsın ki... varsa yoksa zuzu... brat üzgün...",
-    "patron bunu görünce çok kızacak...",
-    "ya kardesim brat oluşturun bak mis gibi işte zuzu ne ya :)"
-]
-
-
 const handlers = {
     onMessage: async (msg: Message) => {
         const text = msg.text?.trim();
@@ -83,17 +71,7 @@ const handlers = {
         const command = commands.find(
             c => c.name === getMainCommand(messageArgs[0].replace("/", "").trim())
         );
-
-        if (msg.text != undefined) {
-            if (msg.text.includes("zuzu")) {
-                const index = Math.floor(Math.random() * zuzuEggMessages.length);
-                console.log(index)
-                await getBot().sendMessage(msg.chat.id, zuzuEggMessages[index], {
-                    reply_to_message_id: msg.message_id
-                })
-            }
-        }
-
+        
         if (msg.chat.type == "private") await checkUserIsUsedBot(msg.from, msg)
 
         if (command) {
