@@ -51,9 +51,11 @@ export async function saveSticker(
 
     const packGeneralInfo = await isGroupStickerCreated(msg.chat.id)
 
-    if (!packGeneralInfo.isCreated || packGeneralInfo.packIsFull) {
-        if (packGeneralInfo.packIsFull) return await sendError(msg, trs.get("cmds.save.baseErrs.maxSizeReached", { maxSize: MAX_STICKER_PACK_SIZE }), actionUser, true)
+    if (packGeneralInfo.packIsFull) {
+        await sendError(msg, trs.get("cmds.save.baseErrs.maxSizeReached", { maxSize: MAX_STICKER_PACK_SIZE }), actionUser, true)
+    }
 
+    if (!packGeneralInfo.isCreated || packGeneralInfo.packIsFull) {
         const createData = await createStickerPack(msg, actionUser)
         let message: string
 

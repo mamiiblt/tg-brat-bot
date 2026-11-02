@@ -68,9 +68,10 @@ const handlers = {
 
         const messageArgs = text.split(" ")[0].split("\n")
 
-        const command = commands.find(
-            c => c.name === getMainCommand(messageArgs[0].replace("/", "").trim())
-        );
+        const commandName = messageArgs[0].startsWith("/")
+            ? getMainCommand(messageArgs[0].slice(1).trim())
+            : undefined
+        const command = commands.find(c => c.name === commandName);
         
         if (msg.chat.type == "private") await checkUserIsUsedBot(msg.from, msg)
 
